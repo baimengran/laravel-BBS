@@ -1,38 +1,21 @@
 @extends('layouts.base')
+@section('nav','关于')
+@section('subhead','About Me')
 @section('content')
-<div role="main" class="main">
-
-    <section class="page-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">About Us</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>About Me</h1>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
                     <div>
-									<span class="img-thumbnail">
-										<img alt="" height="300" class="img-responsive" src="img/team/team-3.jpg">
-									</span>
+                        <span class="img-thumbnail">
+                            <img alt="" height="300" class="img-responsive" src="img/team/team-3.jpg">
+                        </span>
                     </div>
                     <div>
-									<span class="img-thumbnail">
-										<img alt="" height="300" class="img-responsive" src="img/team/team-9.jpg">
-									</span>
+                        <span class="img-thumbnail">
+                            <img alt="" height="300" class="img-responsive" src="img/team/team-9.jpg">
+                        </span>
                     </div>
                 </div>
             </div>
@@ -246,6 +229,6 @@
         </div>
     </div>
 
-</div>
+
 @endsection
 

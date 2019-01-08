@@ -36,8 +36,28 @@
 <div class="body">
 
     @include('layouts.__header')
+    <div role="main" class="main">
 
-    @yield('content');
+        <section class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li><a href="{{route('home')}}">Home</a></li>
+                            <li class="active">@yield('nav')</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>@yield('subhead')</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @yield('content');
+    </div>
+
 
     @include('layouts.__footer')
 

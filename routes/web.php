@@ -12,11 +12,11 @@
 */
 
 //首页
-Route::get('/', 'staticPagesController@home');
+Route::get('/', 'indexController@index')->name('home');
 //注册
-Route::get('register','');
+Route::get('register','registerController@home')->name('signup');
 //关于
-Route::get('/about', 'staticPagesController@about');
+Route::get('/about', 'staticPagesController@about')->name('about');
 //帮助
-Route::get('/help', 'staticPagesController@help');
+Route::get('/help', 'staticPagesController@help')->name('help');
 

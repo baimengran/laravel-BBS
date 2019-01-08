@@ -28,7 +28,7 @@
                         <nav class="header-nav-top">
                             <ul class="nav nav-pills">
                                 <li class="hidden-xs">
-                                    <a href="{{route('')}}"><i class="fa fa-angle-right"></i> 注册</a>
+                                    <a href="{{route('signup')}}"><i class="fa fa-angle-right"></i> 注册</a>
                                 </li>
                                 <li class="hidden-xs">
                                     <a href="contact-us.html"><i class="fa fa-angle-right"></i> 登录</a>
