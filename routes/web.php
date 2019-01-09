@@ -13,10 +13,20 @@
 
 //首页
 Route::get('/', 'indexController@index')->name('home');
-//注册
-Route::get('register','registerController@home')->name('signup');
 //关于
 Route::get('/about', 'staticPagesController@about')->name('about');
 //帮助
 Route::get('/help', 'staticPagesController@help')->name('help');
 
+//注册
+Route::get('/register', 'Auths\registerController@show')->name('register');
+Route::post('/register', 'Auths\registerController@store')->name('register');
+
+//会话控制
+Route::get('/login', 'Auths\LoginController@show')->name('login');
+Route::post('/login', 'Auths\LoginController@login')->name('login');
+Route::delete('/logout', 'Auths\LoginController@logout')->name('logout');
+
+
+//用户显示
+Route::get('/users/{user}', 'UsersController@show')->name('users.show');

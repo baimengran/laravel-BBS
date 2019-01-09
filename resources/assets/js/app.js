@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 //"jquery": "^3.2",
-// require('./bootstrap');
+require('./bootstrap');
 
 
 

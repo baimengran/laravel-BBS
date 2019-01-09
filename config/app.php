@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -78,7 +79,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh-CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,6 +182,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //laravel-Debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
+        //viewComposer
+        App\Http\ViewComposers\ComposerServiceProvider::class,
 
     ],
 

@@ -19,6 +19,8 @@
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    {{--token--}}
+    <meta  name="csrf-token"  content="{{  csrf_token()  }}">
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light"
           rel="stylesheet" type="text/css">
@@ -38,19 +40,16 @@
     @include('layouts.__header')
     <div role="main" class="main">
 
-        <section class="page-header">
+        <section class="page-header page-header-color page-header-quaternary page-header-more-padding" style="background-color: #060606;
+                 border-bottom-color: #357dbb">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li><a href="{{route('home')}}">Home</a></li>
+                        <h1>@yield('subhead')</h1>
+                        <ul class="breadcrumb breadcrumb-valign-mid">
+                            <li><a href="#">home</a></li>
                             <li class="active">@yield('nav')</li>
                         </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>@yield('subhead')</h1>
                     </div>
                 </div>
             </div>
