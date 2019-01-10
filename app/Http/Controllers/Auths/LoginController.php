@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('guest',[
+            'only'=>['show','login']
+        ]);
+    }
 
     public function show()
     {
@@ -24,7 +29,7 @@ class LoginController extends Controller
 
         if (\Auth::attempt($credentials,$request->has('rememberme'))) {
             session()->flash('success', '登录成功');
-            return redirect()->route('home');
+            return redirect()->intended(route('home'));
         } else {
             session()->flash('error', '邮箱或密码不正确');
             return back();

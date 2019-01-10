@@ -8,6 +8,13 @@
 // Bootstrap "bootstrap-sass": "^3.3.7",
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "vendor/bootstrap.min.css";
+
+@import "vendor/font-awesome.min.css";
+@import "vendor/animate.min.css";
+@import "vendor/simple-line-icons.min.css";
+@import "vendor/owl.carousel.min.css";
+@import "vendor/owl.theme.default.min.css";
+@import "vendor/magnific-popup.min.css";
 // Theme CSS
 @import "theme/theme.css";
 @import "theme/theme-elements.css";
@@ -16,12 +23,7 @@
 @import "theme/default.css";
 
 
-@import "vendor/font-awesome.min.css";
-@import "vendor/animate.min.css";
-@import "vendor/simple-line-icons.min.css";
-@import "vendor/owl.carousel.min.css";
-@import "vendor/owl.theme.default.min.css";
-@import "vendor/magnific-popup.min.css";
+
 
 
 

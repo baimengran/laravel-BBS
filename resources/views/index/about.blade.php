@@ -1,6 +1,7 @@
 @extends('layouts.base')
 @section('nav','关于')
 @section('subhead','About Me')
+@section('title','关于')
 @section('content')
 
     <div class="container">

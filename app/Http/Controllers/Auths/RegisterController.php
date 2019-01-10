@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('guest', [
+            'only' => ['show', 'store'],
+        ]);
+    }
 
     public function show()
     {
@@ -22,9 +28,9 @@ class RegisterController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->img=$user->gravatar(140);
+        $user->img = $user->gravatar(140);
         $user->save();
-        \Auth::login($user,$request->has('rememberme'));
+        \Auth::login($user, $request->has('rememberme'));
         return redirect()->route('home');
     }
 }

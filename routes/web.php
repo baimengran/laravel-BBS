@@ -30,3 +30,5 @@ Route::delete('/logout', 'Auths\LoginController@logout')->name('logout');
 
 //用户显示
 Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+//修改密码
+Route::post('users/{user}/edit', 'UsersController@edit')->name('users.edit');
