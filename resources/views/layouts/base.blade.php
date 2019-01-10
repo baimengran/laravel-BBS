@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{app()->getLocale()}}">
 <head>
 
     <!-- Basic -->
@@ -8,9 +8,8 @@
 
     <title>@yield('title','Blog')</title>
 
-    <meta name="keywords" content="HTML5 Template"/>
-    <meta name="description" content="Porto - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
+    <meta name="keywords" content="laravel-BBS"/>
+    <meta name="description" content="laravel-BBS">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -38,7 +37,7 @@
 <div class="body">
 
     @include('layouts.__header')
-    <div role="main" class="main">
+    <div role="main" class="main {{route_class().'-page'}}">
 
         <section class="page-header page-header-color page-header-quaternary page-header-more-padding" style="background-color: #060606;
                  border-bottom-color: #357dbb">

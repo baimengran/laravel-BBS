@@ -26,7 +26,16 @@
                         {{--</form>--}}
                         {{--</div>--}}
                         <nav class="header-nav-top">
-                            @if(Auth::check())
+                            @guest
+                                <ul class="nav nav-pills">
+                                    <li class="hidden-xs">
+                                        <a href="{{route('register')}}"><i class="fa fa-angle-right"></i> 注册</a>
+                                    </li>
+                                    <li class="hidden-xs">
+                                        <a href="{{route('login')}}"><i class="fa fa-angle-right"></i> 登录</a>
+                                    </li>
+                                </ul>
+                            @else
                                 <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
                                     <nav>
                                         <ul class="nav nav-pills" id="mainNav">
@@ -44,8 +53,8 @@
                                                                 <div class="col-md-8">
                                                                     <div class="user-avatar">
                                                                         <div class="img-thumbnail">
-                                                                           <img src="{{Auth::user()->img}}"
-                                                                                   alt="{{Auth::user()->name}}">
+                                                                            <img src="{{Auth::user()->img}}"
+                                                                                 alt="{{Auth::user()->name}}">
                                                                         </div>
                                                                         <p><strong>{{Auth::user()->name}}</strong></p>
                                                                     </div>
@@ -56,11 +65,9 @@
                                                                             <a href="{{route('users.show',[Auth::user()])}}">个人中心</a>
                                                                         </li>
                                                                         <li>
-                                                                            <form id="logout"
-                                                                                  action="{{ route('logout') }}"
+                                                                            <form id="logout" action="{{ route('logout') }}"
                                                                                   method="POST">
                                                                                 {{ csrf_field() }}
-                                                                                {{ method_field('DELETE') }}
                                                                             </form>
                                                                             <a href="#" class="btn"
                                                                                onclick="$('#logout').submit()"
@@ -76,17 +83,7 @@
                                         </ul>
                                     </nav>
                                 </div>
-                            @else
-                                <ul class="nav nav-pills">
-                                    <li class="hidden-xs">
-                                        <a href="{{route('register')}}"><i class="fa fa-angle-right"></i> 注册</a>
-                                    </li>
-                                    <li class="hidden-xs">
-                                        <a href="{{route('login')}}"><i class="fa fa-angle-right"></i> 登录</a>
-                                    </li>
-                                </ul>
-
-                            @endif
+                            @endguest
                         </nav>
                     </div>
                     <div class="header-row">

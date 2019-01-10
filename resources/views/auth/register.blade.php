@@ -23,7 +23,7 @@
                                                     <label>输入用户名</label>
                                                     <input type="text" name="name" value="{{old('name')}}"
                                                            class="form-control input-lg" placeholder="UserName"
-                                                           required autofocus >
+                                                           required autofocus>
                                                     @if ($errors->has('name'))
                                                         <span class="help-block">
                                                             <strong style="color: #b7281f;">{{ $errors->first('name') }}</strong>
@@ -37,7 +37,7 @@
                                                 <div class="col-md-12">
                                                     <label>输入邮箱</label>
                                                     <input type="text" name="email" value="{{old('email')}}"
-                                                           class="form-control input-lg" placeholder="Email">
+                                                           class="form-control input-lg" placeholder="Email" required>
                                                     @if ($errors->has('email'))
                                                         <span class="help-block">
                                                         <strong style="color: #b7281f;">{{ $errors->first('email') }}</strong>
@@ -50,8 +50,8 @@
                                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                                 <div class="col-md-12">
                                                     <label>输入密码</label>
-                                                    <input type="password" name="password" value="{{old('password')}}"
-                                                           class="form-control input-lg" placeholder="Password">
+                                                    <input type="password" name="password" value=""
+                                                           class="form-control input-lg" placeholder="Password" required>
                                                     @if ($errors->has('password'))
                                                         <span class="help-block">
                                                         <strong style="color: #b7281f;">{{ $errors->first('password') }}</strong>
@@ -65,9 +65,28 @@
                                                 <div class="col-md-12">
                                                     <label>确认密码</label>
                                                     <input type="password" name="password_confirmation"
-                                                           value="{{old('password_confirmation')}}"
+                                                           value=""
                                                            class="form-control input-lg"
-                                                           placeholder="PasswordConfirmation">
+                                                           placeholder="PasswordConfirmation" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                                                <div class="col-md-12">
+                                                    <label for="captcha">输入验证码</label>
+                                                    <input id="captcha" type="text" name="captcha"
+                                                           value=""
+                                                           class="form-control input-lg"
+                                                           placeholder="Captcha" required>
+                                                    <img class="captcha" src="{{captcha_src('flat')}}"
+                                                         onclick="this.src='/captcha/flat?'+Math.random()"
+                                                         title="点击图片重新获取验证码" style="margin-bottom: 0px; margin-top: 10px;cursor: pointer;">
+                                                    @if ($errors->has('captcha'))
+                                                        <span class="help-block">
+                                                        <strong style="color: #b7281f;">{{ $errors->first('captcha') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -84,7 +103,8 @@
                                                        class="btn btn-primary pull-right mb-xl"
                                                        data-loading-text="Loading...">
                                             </div>
-                                            <label class="pull-right">已有账号？<a href="{{route('login')}}">(现在就登录)</a></label>
+                                            <label class="pull-right">已有账号？<a
+                                                        href="{{route('login')}}">(现在就登录)</a></label>
                                         </div>
                                     </form>
                                 </div>

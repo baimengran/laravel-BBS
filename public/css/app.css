@@ -18496,5 +18496,11 @@ html #footer.color-light .footer-copyright {
 html.boxed .body {
 	border-top-color: #0088cc;
 }
+/* User register page */
 
+.register-page img.captcha {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  cursor: pointer;
+}
 
