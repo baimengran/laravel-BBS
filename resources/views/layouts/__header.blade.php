@@ -54,7 +54,7 @@
                                                                     <div class="user-avatar">
                                                                         <div class="img-thumbnail">
                                                                             <img src="{{Auth::user()->img}}"
-                                                                                 alt="{{Auth::user()->name}}">
+                                                                                 alt="">
                                                                         </div>
                                                                         <p><strong>{{Auth::user()->name}}</strong></p>
                                                                     </div>

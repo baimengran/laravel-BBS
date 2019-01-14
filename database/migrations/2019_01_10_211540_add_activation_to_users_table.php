@@ -15,6 +15,7 @@ class AddActivationToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->string('introduction')->nullable()->after('img')->comment('简介');
         });
     }
 
@@ -27,6 +28,7 @@ class AddActivationToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropColumn('introduction');
         });
     }
 }

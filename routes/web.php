@@ -34,8 +34,12 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-//用户显示
-Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+//用户操作
+Route::get('users/{user}', 'UserController@show')->name('users.show');
+Route::post('users/{user}/edit', 'UserController@edit')->name('users.edit');
+Route::put('users/{user}/update', 'UserController@editBasic')->name('users.editBasic');
+Route::post('users/{user}/update', 'UserController@editAvatar')->name('users.editAvatar');
+
 
 
 

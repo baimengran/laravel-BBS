@@ -13,11 +13,16 @@
                            data-plugin-options="{'minWidth': 991, 'containerSelector': '.container', 'padding': {'top': 110}}"
                            style="width: 262.5px;">
 
-                        <div class="featured-box featured-box-primary featured-box-effect-1" style="height: 358px;">
+                        <div class="featured-box featured-box-primary featured-box-effect-6">
                             <div class="box-content">
-                                <a href="#"><i class="icon-featured fa fa-user"></i></a>
-                                <h4 class="text-uppercase">{{Auth::user()->name}}</h4>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
+                                <a id="editAvatar" href="javascript:void(0)" onclick="capture(this)"><img class="icon-featured" src="{{$user->img}}"/></a>
+                                <h4 class="text-uppercase">{{$user->name}}</h4>
+                                <hr>
+                                <h5 style="margin:0px 0px 5px 0px;text-align: left">个人简介</h5>
+                                <p style="margin: 0px 0px 5px 0px;text-align: left">{{$user->introduction??'这家伙很懒什么都没有'}}</p>
+                                <hr>
+                                <h5 style="margin: 0px 0px 5px 0px;text-align: left">注册于</h5>
+                                <p style="margin: 0px 0px 5px 0px;text-align: left">{{$user->created_at->diffForHumans()}}</p>
                                 <p><a href="/" class="lnk-primary learn-more">Learn More <i
                                                 class="fa fa-angle-right"></i></a></p>
                             </div>
@@ -28,7 +33,11 @@
 
                                 <h4>个人资料</h4>
                                 <ul class="nav nav-list mb-xlg">
-                                    <li><a id="edPw" href="javascript:view(0)" onclick="capture(this)">修改密码</a></li>
+                                    <li><a id="editBasic" href="javascript:void(0)" onclick="capture(this)">基本资料</a>
+                                    </li>
+                                    <li><a id="editPwd" href="javascript:void(0)" onclick="capture(this)">修改密码</a></li>
+                                    <li><a id="editAvatar" href="javascript:void(0)" onclick="capture(this)">上传头像</a>
+                                    </li>
                                     <li class="active">
                                         <a href="#">Photos (4)</a>
                                         <ul>
@@ -51,7 +60,9 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div id="edit" class="featured-box featured-box-primary" style="min-height:865px;*height:100%;_height:400px;">
+                <div class="featured-box featured-box-primary" style="min-height:865px;*height:100%;_height:400px;">
+                    <div id="edit" class="box-content">
+                    </div>
                 </div>
             </div>
 
@@ -60,8 +71,8 @@
     </div>
     <script>
         function capture(data) {
-            console.log(data.id)
-            axios.post('{{route('users.edit',[Auth::user()])}}', {
+            // console.log(data.id)
+            axios.post('{{route('users.edit',[Auth::user()->id])}}', {
                 reque: data.id
             })
                 .then(function (response) {
@@ -69,8 +80,20 @@
                     $('#edit').empty().append(response.data);
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    if (error.response.status === 419 || error.response.status === 404) {
+                        swal({
+                            text: '页面活动以过期，请刷新页面后重试',
+                            icon: 'warning',
+                            button: '确定',
+                        }).then(function (isconfirm) {
+                            if (isconfirm === true) {
+                                window.location.reload();
+                            }
+                        });
+                    }
                 });
         }
+
+
     </script>
 @endsection

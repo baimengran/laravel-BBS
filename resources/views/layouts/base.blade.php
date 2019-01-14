@@ -9,10 +9,11 @@
     <title>@yield('title','Blog')</title>
 
     <meta name="keywords" content="laravel-BBS"/>
-    <meta name="description" content="laravel-BBS">
+    <meta name="description" content="laravel-BBS"/>
+    <meta name="author" content="okler.net"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon"/>
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
     <!-- Mobile Metas -->

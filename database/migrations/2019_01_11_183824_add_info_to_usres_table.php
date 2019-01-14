@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImgToUsersTable extends Migration
+class AddInfoToUsresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,10 @@ class AddImgToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('img')->nullable()->after('email')->comment('头像');
+            $table->string('phone')->nullable()->after('introduction')->comment('手机');
+            $table->string('company')->nullable()->comment('公司');
+            $table->string('position')->nullable()->comment('职位');
+            $table->string('work_address')->nullable()->comment('工作地点');
         });
     }
 
@@ -28,7 +31,6 @@ class AddImgToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropColumn('img');
         });
     }
 }

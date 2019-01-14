@@ -19,6 +19,7 @@ class UserPolcy
     public function view(User $user, User $model)
     {
         //
+        return $user->id === $model->id;
 
     }
 
