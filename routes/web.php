@@ -40,6 +40,10 @@ Route::post('users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::put('users/{user}/update', 'UserController@editBasic')->name('users.editBasic');
 Route::post('users/{user}/update', 'UserController@editAvatar')->name('users.editAvatar');
 
+//帖子
+Route::get('topics','TopicController@index')->name('topics.index');
+Route::get('topics/{}');
+
 
 
 
