@@ -36,8 +36,8 @@
                                     <li><a id="editBasic" href="javascript:void(0)" onclick="capture(this)">基本资料</a>
                                     </li>
                                     <li><a id="editPwd" href="javascript:void(0)" onclick="capture(this)">修改密码</a></li>
-                                    <li><a id="editAvatar" href="javascript:void(0)" onclick="capture(this)">上传头像</a>
-                                    </li>
+                                    <li><a id="editAvatar" href="javascript:void(0)" onclick="capture(this)">上传头像</a></li>
+                                    <li><a id="editAvatar" href="javascript:void(0)" onclick="capture(this)">消息通知</a></li>
                                     <li class="active">
                                         <a href="#">Photos (4)</a>
                                         <ul>
