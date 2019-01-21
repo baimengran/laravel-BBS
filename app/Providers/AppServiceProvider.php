@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Topic;
+use App\Observers\TopicObserver;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //修改时间中文
         Carbon::setLocale('zh');
+        //topic观观察着
+        Topic::observe(TopicObserver::class);
     }
 
     /**

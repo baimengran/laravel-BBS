@@ -9,14 +9,19 @@
 namespace App\Handlers;
 
 
-
-
 class ImageUploadHandler
 {
     //只允许以下后缀名的图片文件上传
     protected $allowed_ext = ['png', 'jpg', 'gif', 'jpeg'];
 
-
+    /**
+     * 保存上传图片，并根据设置宽度剪裁
+     * @param mixed $file 上传的图片
+     * @param string $folder 保存目录
+     * @param string $file_prefix 保存图片前缀
+     * @param bool $max_width 图片最大宽度以供剪裁，默认不剪裁
+     * @return array|bool 图片路径或false
+     */
     public function save($file, $folder, $file_prefix, $max_width = false)
     {
         //构建文件夹规则

@@ -21,10 +21,10 @@ class TopicsTableSeeder extends Seeder
         //获取faker实例
         $faker = app(\Faker\Generator::class);
 
-        factory(Topic::class, 100)->create([
-            'user_id' => $faker->randomElement($user_ids),
-            'category_id' => $faker->randomElement($category_ids),
-        ]);
-
+        $topics = factory(Topic::class, 100)->make()->each(function ($topic) use ($faker, $user_ids, $category_ids) {
+            $topic->user_id = $faker->randomElement($user_ids);
+            $topic->category_id = $faker->randomElement($category_ids);
+        });
+        Topic::insert($topics->toArray());
     }
 }

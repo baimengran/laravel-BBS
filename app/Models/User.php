@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','introduction', 'phone' , 'company', 'position', 'work_address','img',
+        'name', 'email', 'password', 'introduction', 'phone', 'company', 'position', 'work_address', 'img',
     ];
 
     /**
@@ -31,5 +31,10 @@ class User extends Authenticatable
     {
         $hash = md5(strtolower(trim($this->attributes['email'])));
         return "http://www.gravatar.com/avatar/$hash?s=$size";
+    }
+
+    public function topic()
+    {
+        return $this->hasMany(Topic::class);
     }
 }

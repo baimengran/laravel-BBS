@@ -18,12 +18,16 @@ class ComposerServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        View::composer(
-            '__header', 'App\Http\ViewComposers\UserInfo'
+        View::composer([
+            'layouts.base',
+        ],
+            'App\Http\ViewComposers\Navigation'
+
         );
     }
 
-    public function register(){
+    public function register()
+    {
 
     }
 }

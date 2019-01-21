@@ -35,14 +35,25 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 //用户操作
-Route::get('users/{user}', 'UserController@show')->name('users.show');
-Route::post('users/{user}/edit', 'UserController@edit')->name('users.edit');
-Route::put('users/{user}/update', 'UserController@editBasic')->name('users.editBasic');
-Route::post('users/{user}/update', 'UserController@editAvatar')->name('users.editAvatar');
+Route::get('users/{user}', 'UsersController@show')->name('users.show');
+Route::post('users/{user}/edit', 'UsersController@edit')->name('users.edit');
+Route::put('users/{user}/update', 'UsersController@editBasic')->name('users.editBasic');
+Route::post('users/{user}/update', 'UsersController@editAvatar')->name('users.editAvatar');
 
 //帖子
-Route::get('topics','TopicController@index')->name('topics.index');
-Route::get('topics/{}');
+Route::get('topics', 'TopicsController@index')->name('topics.index');
+//Route::get('topics/{topic}/show', 'TopicsController@show')->name('topics.show');
+Route::get('topics/create', 'TopicsController@create')->name('topics.create');
+Route::post('topics', 'TopicsController@store')->name('topics.store');
+//Simditor前端文本编辑器图片处理路由
+Route::post('topics/upload_image', 'TopicsController@uploadImages')->name('topics.uploadImage');
+Route::get('topics/{topic}/edit', 'TopicsController@edit')->name('topics.edit');
+Route::put('topics/{topic}', 'TopicsController@update')->name('topics.update');
+Route::delete('topics/{topic}', 'TopicsController@destroy')->name('topics.destroy');
+//Slug显示路由 SEO友好路由
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+//根据分类显示帖子
+Route::get('categories/{category}', 'CategoriesController@show')->name('categories.show');
 
 
 

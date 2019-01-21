@@ -63,8 +63,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-1">
-                    <a href="index.html" class="logo">
-                        <img alt="Porto Website Template" class="img-responsive" src="{{asset('img/logo-footer.png')}}">
+                    <a href="{{route('home')}}" class="logo">
+                        <img alt="Porto Website Template" class="img-responsive" src="{{asset('images/logo-footer.png')}}">
                     </a>
                 </div>
                 <div class="col-md-7">

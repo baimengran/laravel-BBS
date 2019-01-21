@@ -8,13 +8,13 @@
 
     <title>@yield('title','Blog')</title>
 
-    <meta name="keywords" content="laravel-BBS"/>
-    <meta name="description" content="laravel-BBS"/>
-    <meta name="author" content="okler.net"/>
+    <meta name="keywords" content="laravel-Blog"/>
+    <meta name="description" content="@yield('description','laravel-Blog')"/>
+    <meta name="author" content="13466320356@sina.com"/>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon"/>
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="{{asset('images/apple-touch-icon.png')}}">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -29,14 +29,14 @@
     {{--<script src="js/theme/theme.js"></script>--}}
 
     {{--<script src="js/vendor/modernizr.min.js"></script>--}}
-
+    <script src="{{asset('js/vendor/jquery.js')}}"></script>
+    @yield('styles')
 
 </head>
 
 
 <body>
 <div class="body">
-
     @include('layouts.__header')
     <div role="main" class="main {{route_class().'-page'}}">
 
@@ -54,14 +54,14 @@
                 </div>
             </div>
         </section>
-        @yield('content');
+        @yield('content')
     </div>
 
 
     @include('layouts.__footer')
 
 </div>
-<script src="{{asset('js/vendor/jquery.js')}}"></script>
+
 <script src="{{asset('js/vendor/jquery.appear.min.js')}}"></script>
 <script src="{{asset('js/vendor/jquery.easing.min.js')}}"></script>
 <script src="{{asset('js/vendor/jquery-cookie.min.js')}}"></script>
@@ -82,6 +82,7 @@
 {{--<!-- Theme Initialization Files -->--}}
 <script src="{{asset('js/theme/theme.init.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
+@yield('scripts')
 
 </body>
 </html>

@@ -13,8 +13,8 @@ class TopicPolicy
     /**
      * Determine whether the user can view the topic.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Topic  $topic
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Topic $topic
      * @return mixed
      */
     public function view(User $user, Topic $topic)
@@ -25,7 +25,7 @@ class TopicPolicy
     /**
      * Determine whether the user can create topics.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\User $user
      * @return mixed
      */
     public function create(User $user)
@@ -36,24 +36,26 @@ class TopicPolicy
     /**
      * Determine whether the user can update the topic.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Topic  $topic
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Topic $topic
      * @return mixed
      */
     public function update(User $user, Topic $topic)
     {
         //
+        return $user->id === $topic->user_id;
     }
 
     /**
      * Determine whether the user can delete the topic.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Topic  $topic
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Topic $topic
      * @return mixed
      */
     public function delete(User $user, Topic $topic)
     {
         //
+        return $user->id === $topic->user_id;
     }
 }
