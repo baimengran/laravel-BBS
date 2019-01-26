@@ -20,6 +20,11 @@ class Topic extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     /**
      * 修改路由，可包含slug参数路由，（SEO友好路由）
      * @param array $params 附加URL参数

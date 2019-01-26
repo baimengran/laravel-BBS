@@ -24,7 +24,7 @@
                         <div class="post-image">
                             <div class="img-thumbnail">
                                 <a href="blog-post.html">
-                                    <img src="img/blog/blog-thumb-1.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="post-image">
                             <div class="img-thumbnail">
                                 <a href="blog-post.html">
-                                    <img src="img/blog/blog-thumb-2.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="post-image">
                             <div class="img-thumbnail">
                                 <a href="blog-post.html">
-                                    <img src="img/blog/blog-thumb-3.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         <div class="post-image">
                             <div class="img-thumbnail">
                                 <a href="blog-post.html">
-                                    <img src="img/blog/blog-thumb-2.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="post-image">
                             <div class="img-thumbnail">
                                 <a href="blog-post.html">
-                                    <img src="img/blog/blog-thumb-3.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="post-image">
                             <div class="img-thumbnail">
                                 <a href="blog-post.html">
-                                    <img src="img/blog/blog-thumb-1.jpg" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </div>
                         </div>
@@ -129,27 +129,26 @@
 </aside>
 <script>
     $(document).ready(function () {
-        var menuYloc = $("#leftmenu").offset().top; //此ID为随着屏幕滚动div的ID
-        console.log("div高度" + menuYloc);
-        let bottom = $("#footer").offset().top;//底部导航高度
-        var cateHeig = $("#leftmenu").height();//侧边栏高度
-        console.log("分类元素高度：" + cateHeig)
-        console.log("底部导航：" + bottom)
-        var scrollBtm = $(document).height();//浏览器可视高度
-        console.log("浏览器高度：" + scrollBtm)
-        let a = scrollBtm - bottom;//浏览器高度-底部导航高度
-        console.log("a:" + a);
-        let b = bottom - cateHeig;//底部导航-侧边栏高度
-        console.log("b:" + b);
-        let c = b - a;
-        console.log("c:" + c);
         $(window).scroll(function () {
-
+            var menuYloc = $("#leftmenu").offset().top; //此ID为随着屏幕滚动div的ID
+            //console.log("div高度" + menuYloc);
+            let bottom = $("#footer").offset().top;//底部导航高度
+            var cateHeig = $("#leftmenu").height();//侧边栏高度
+            //console.log("分类元素高度：" + cateHeig)
+            //console.log("底部导航：" + bottom)
+            var scrollBtm = $(document).height();//浏览器可视高度
+            //console.log("浏览器高度：" + scrollBtm)
+            let a = scrollBtm - bottom;//浏览器高度-底部导航高度
+            //console.log("a:" + a);
+            let b = bottom - cateHeig;//底部导航-侧边栏高度
+            //console.log("b:" + b);
+            let c = b - a;
+            //console.log("c:" + c);
             let scrollTop = $(window).scrollTop();
-            console.log("滚动条：" + scrollTop);
+            //console.log("滚动条：" + scrollTop);
             var offsetTop = scrollTop - 200;
             let offsetTop1 = offsetTop + "px";
-            console.log(offsetTop);
+            //console.log(offsetTop);
 
             if (scrollTop <= 200) {
                 $("#leftmenu").animate({top: 0}, {duration: 600, queue: false});

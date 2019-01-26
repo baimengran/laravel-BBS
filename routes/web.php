@@ -52,8 +52,13 @@ Route::put('topics/{topic}', 'TopicsController@update')->name('topics.update');
 Route::delete('topics/{topic}', 'TopicsController@destroy')->name('topics.destroy');
 //Slug显示路由 SEO友好路由
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+
 //根据分类显示帖子
 Route::get('categories/{category}', 'CategoriesController@show')->name('categories.show');
+
+//评论
+Route::get('comments/{topic}/index', 'CommentsController@index')->name('comments.index');
+Route::post('comments/{topic}/reply', 'CommentsController@reply')->name('comments.reply');
 
 
 

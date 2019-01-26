@@ -9,7 +9,8 @@
         <div class="container">
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     <strong>{{session('success')}}</strong>
                 </div>
             @endif
@@ -35,15 +36,19 @@
                                 <span><i class="fa fa-comments"></i> {{$topic->reply_count}} 评论</span>
                                 @can('update',$topic)
                                     <div class="pull-right">
-                                    <a class="btn btn-default btn-xs " role="button"
-                                                href="{{route('topics.edit',[$topic])}}" style="margin-right: 10px;"><i class="fa fa-edit"></i> 编辑</a>
+                                        <a class="btn btn-default btn-xs " role="button"
+                                           href="{{route('topics.edit',[$topic])}}" style="margin-right: 10px;"><i
+                                                    class="fa fa-edit"></i> 编辑</a>
 
-                                    <form class="pull-left" action="{{route('topics.destroy',[$topic])}}" method="post" accept-charset="UTF-8">
-                                        {{csrf_field()}}
-                                        {{method_field('DELETE')}}
-                                        <button type="submit" class="btn btn-default btn-xs "
-                                                    href="{{route('topics.destroy',[$topic])}}" style="margin-right: 10px;"><i class="fa fa-trash-o"></i> 删除</button>
-                                    </form>
+                                        <form class="pull-left" action="{{route('topics.destroy',[$topic])}}"
+                                              method="post" accept-charset="UTF-8">
+                                            {{csrf_field()}}
+                                            {{method_field('DELETE')}}
+                                            <button type="submit" class="btn btn-default btn-xs "
+                                                    href="{{route('topics.destroy',[$topic])}}"
+                                                    style="margin-right: 10px;"><i class="fa fa-trash-o"></i> 删除
+                                            </button>
+                                        </form>
                                     </div>
                                 @endcan
                             </div>
@@ -79,158 +84,15 @@
                                 </p>
                                 <p>{{$topic->user->introduction}}</p>
                             </div>
-
+{{--                            <a class="btn-primary" href="{{route('comments.reply',[$topic])}}">点击</a>--}}
+                            {{--评论开始--}}
                             <div class="post-block post-comments ">
                                 <h3 class="heading-primary"><i class="fa fa-comments"></i>评论 ({{$topic->reply_count}})
                                 </h3>
-
-                                <ul class="comments">
-                                    <li>
-                                        <div class="comment">
-                                            <div class="img-thumbnail">
-                                                <img class="avatar" alt="" src="img/avatars/avatar-2.jpg">
-                                            </div>
-                                            <div class="comment-block">
-                                                <div class="comment-arrow"></div>
-                                                <span class="comment-by">
-																<strong>John Doe</strong>
-																<span class="pull-right">
-																	<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																</span>
-															</span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                                                    euismod odio, gravida pellentesque urna varius vitae, gravida
-                                                    pellentesque urna varius vitae. Lorem ipsum dolor sit amet,
-                                                    consectetur adipiscing elit. Nam viverra euismod odio, gravida
-                                                    pellentesque urna varius vitae. Sed dui lorem, adipiscing in
-                                                    adipiscing et, interdum nec metus. Mauris ultricies, justo eu
-                                                    convallis placerat, felis enim ornare nisi, vitae mattis nulla ante
-                                                    id dui.</p>
-                                                <span class="date pull-right">November 12, 2017 at 1:38 pm</span>
-                                            </div>
-                                        </div>
-
-                                        <ul class="comments reply">
-                                            <li>
-                                                <div class="comment">
-                                                    <div class="img-thumbnail">
-                                                        <img class="avatar" alt="" src="img/avatars/avatar-3.jpg">
-                                                    </div>
-                                                    <div class="comment-block">
-                                                        <div class="comment-arrow"></div>
-                                                        <span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i
-                                                                                            class="fa fa-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                                                            viverra euismod odio, gravida pellentesque urna varius
-                                                            vitae, gravida pellentesque urna varius vitae.</p>
-                                                        <span class="date pull-right">November 12, 2017 at 1:38 pm</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="comment">
-                                                    <div class="img-thumbnail">
-                                                        <img class="avatar" alt="" src="img/avatars/avatar-4.jpg">
-                                                    </div>
-                                                    <div class="comment-block">
-                                                        <div class="comment-arrow"></div>
-                                                        <span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i
-                                                                                            class="fa fa-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                                                            viverra euismod odio, gravida pellentesque urna varius
-                                                            vitae, gravida pellentesque urna varius vitae.</p>
-                                                        <span class="date pull-right">November 12, 2017 at 1:38 pm</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="comment">
-                                            <div class="img-thumbnail">
-                                                <img class="avatar" alt="" src="img/avatars/avatar.jpg">
-                                            </div>
-                                            <div class="comment-block">
-                                                <div class="comment-arrow"></div>
-                                                <span class="comment-by">
-																<strong>John Doe</strong>
-																<span class="pull-right">
-																	<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																</span>
-															</span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                <span class="date pull-right">November 12, 2017 at 1:38 pm</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="comment">
-                                            <div class="img-thumbnail">
-                                                <img class="avatar" alt="" src="img/avatars/avatar.jpg">
-                                            </div>
-                                            <div class="comment-block">
-                                                <div class="comment-arrow"></div>
-                                                <span class="comment-by">
-																<strong>John Doe</strong>
-																<span class="pull-right">
-																	<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																</span>
-															</span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                <span class="date pull-right">November 12, 2017 at 1:38 pm</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-
+                                <div id="comments" class="row" style="margin-right: 0px"></div>
                             </div>
-
-                            <div class="post-block post-leave-comment">
-                                <h3 class="heading-primary">Leave a comment</h3>
-
-                                <form action="" method="post">
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-6">
-                                                <label>Your name *</label>
-                                                <input type="text" value="" maxlength="100" class="form-control"
-                                                       name="name" id="name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Your email address *</label>
-                                                <input type="email" value="" maxlength="100" class="form-control"
-                                                       name="email" id="email">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <label>Comment *</label>
-                                                <textarea maxlength="5000" rows="10" class="form-control" name="comment"
-                                                          id="comment"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input type="submit" value="Post Comment" class="btn btn-primary btn-lg"
-                                                   data-loading-text="Loading...">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
+                            @include('topics.__comment_box')
+                            {{--评论结束--}}
                         </div>
                     </article>
 
@@ -241,7 +103,196 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            let ids = [];//评论id数组，
+            let replies = [];//回复div元素数组
+            let winSize = $(window).height();//当前可见区域大小
+            let ajaxs = [];
+            console.log('可见区域大小：' + winSize);
+            //加载主评论
+            axios.get('{{route('comments.index',[$topic])}}')
+                .then(function (response) {
+                    $("#comments").append(response.data);
+                    $(".pagination").removeClass('pagination-lg');
+                    $(".pagination").addClass("comment");
+                    //let ids = [];
+                    let li = [];//评论下ul元素数组
+                    // $("#comments .comments li").each(function () {
+                    //     li.push(this);
+                    // });
+                    //加载回复
+                    reply();
+                    //滚动事件
+                    // $(window).scroll(function () {
+                    //     let scroll = $(window).scrollTop();//滚动条位置
+                    //     //循环遍历idTop_idHeight中元素宽度
+                    //     $.each(li, function (k, v) {
+                    //         let idTop_idHeight = $(this).offset().top + $(this).height();
+                    //         //元素是否进入可视范围
+                    //         if (idTop_idHeight < scroll + winSize) {
+                    //
+                    //             //确定是否存在回复对象，存在则不添加到replies数组
+                    //             if (!(k in replies)) {
+                    //                 //console.log(11);
+                    //                 replies.push({'key': k, 'value': $(this).children(".replies")});
+                    //             }
+                    //         }
+                    //     });
+                    //     $.each(replies, function (key, value) {
+                    //         if ($.inArray(key, ajaxs) === -1) {
+                    //             ajaxs.push(key);//添加replies元素数组key到ajaxs数组，以确保ajax不会重复提交
+                    //             id = value['value'].attr('id');//获取父评论id
+                    //             //ajax请求服务器获取子评论id
+                    {{--axios.post('{{route('comments.reply',[$topic])}}', {id: id,blo:true})--}}
+                    {{--.then(function (response) {--}}
+                    {{--//console.log(response.data.parent_id);--}}
+                    {{--if (!$.isEmptyObject(response.data)) {--}}
+                    {{--$("#comments ul li div.replies").each(function () {--}}
+                    {{--// console.log($(this).attr('id').trim().replace('replies',''));--}}
+                    {{--// console.log(response.data.data[0].parent_id);--}}
+                    {{--if ($(this).attr('id').replace('replies', '').trim() == response.data.parent_id) {--}}
+                    {{--// console.log($(this)[0])--}}
+                    {{--axios.post('{{route('comments.reply',[$topic])}}',{id:response.data.parent_id})--}}
+                    {{--.then(function(response){--}}
+                    {{--$("#"+$(this).attr('id')).append(response.data);--}}
+                    {{--$(".pagination.pagination-lg li").css('padding','0px');--}}
+                    {{--$(".pagination.pagination-lg").addClass('pagination-sm');--}}
+                    {{--$(".pagination.pagination-sm").removeClass('pagination-lg');--}}
 
+                    {{--})--}}
+                    {{--}--}}
+
+                    {{--})--}}
+                    {{--}--}}
+                    {{--});--}}
+                    // }
+                    // });
+                    // });
+
+
+                    //console.log(ids);
+                    //console.log(id)
+                    //加载评论回复
+                    {{--axios.post('{{route('comments.reply',[$topic])}}',{'ids':ids})--}}
+                    {{--.then(function (response) {--}}
+                    {{--console.log(response.data);--}}
+                    // $.each(response.data['data'],function(){
+                    //     if(this['id']===601){
+                    //         console.log(1);
+                    //     }
+                    // })
+                    // });
+                    {{--let css={--}}
+                    {{--clear:'both',--}}
+                    {{--padding:'0px',--}}
+                    {{--};--}}
+                    {{--$("#replies").append(response.data);--}}
+                    {{--$(".pagination.pagination-lg li").css(css);--}}
+                    {{--$(".pagination.pagination-lg").addClass('pagination-sm');--}}
+                    {{--$(".pagination.pagination-sm").removeClass('pagination-lg');--}}
+
+                    {{--}).catch(function (error) {--}}
+                    {{--if (error.response) {--}}
+                    {{--swal({--}}
+                    {{--title: '出错啦！',--}}
+                    {{--text: error.response.statusText,--}}
+                    {{--icon: 'error',--}}
+                    {{--button: '确定',--}}
+                    {{--});--}}
+                    {{--}--}}
+                    {{--});--}}
+                });
+
+            //加载回复函数
+            function reply() {
+                $("#comments .comments .replies").each(function () {
+                    let id = $(this).attr('id');
+                    let reply = $(this);
+                    console.log(id);
+
+                    axios.post('{{route('comments.reply',[$topic])}}', {id: id})
+                        .then(function (response) {
+                            //console.log('fff'+response.data)
+                            reply.append(response.data);
+                            $(".pagination.pagination-lg li").css('padding', '0px');
+                            $(".pagination.pagination-lg").addClass('pagination-sm');
+                            $(".pagination.pagination-lg").addClass('reply');
+                            $(".pagination.pagination-sm").removeClass('pagination-lg');
+
+                        });
+                });
+            }
+
+            //主评论分页
+            $("body").on('click', '#comments .comment li a', function (e) {
+                e.preventDefault();
+                axios.get($(this).attr('href'))
+                    .then(function (response) {
+                        $("#comments").html(response.data);
+                        $(".pagination").removeClass('pagination-lg');
+                        $(".pagination").addClass("comment");
+                        //加载回复
+                        reply();
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            swal({
+                                title: '评论加载出错啦！',
+                                text: error.response.statusText,
+                                icon: 'error',
+                                button: '确定',
+                            });
+                        } else {
+                            swal({
+                                title: '评论加载出错啦',
+                                text: error.message,
+                                icon: 'error',
+                                button: '确定',
+                            });
+                        }
+                    });
+            });
+
+            //回复分页
+
+            $("body").on("click", '.reply li a', function (e) {
+                e.preventDefault();
+                //console.log($(this));
+                let parent = $(this).parent().parent(".reply").parent(".replies");
+                //console.log(parent);
+                let id = parent.attr('id').replace('replies', '').trim();
+                //console.log(id);
+                axios.post($(this).attr('href'), {id: id})
+                    .then(function (response) {
+                        //console.log(response.data)
+                        parent.html(response.data);
+                        $(".pagination.pagination-lg li").css('padding', '0px');
+                        $(".pagination.pagination-lg").addClass('pagination-sm');
+                        $(".pagination.pagination-lg").addClass("reply");
+                        $(".pagination.pagination-sm").removeClass('pagination-lg');
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            swal({
+                                title: '出错啦！',
+                                text: error.response.statusText,
+                                icon: 'error',
+                                button: '确定',
+                            });
+                        } else {
+                            swal({
+                                title: '出错啦',
+                                text: error.message,
+                                icon: 'error',
+                                button: '确定',
+                            });
+                        }
+                    });
+            });
+        });
+
+    </script>
 
 
 @endsection
