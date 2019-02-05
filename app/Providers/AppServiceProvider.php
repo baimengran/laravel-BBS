@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\Topic;
+use App\Models\User;
+use App\Observers\CommentObserver;
 use App\Observers\TopicObserver;
+use App\Observers\UserObserver;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('zh');
         //topic观观察着
         Topic::observe(TopicObserver::class);
+        //Comment观察者
+        Comment::observe(CommentObserver::class);
+        //User观察者
+        User::observe(UserObserver::class);
     }
 
     /**

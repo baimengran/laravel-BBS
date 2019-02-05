@@ -84,14 +84,21 @@
                                 </p>
                                 <p>{{$topic->user->introduction}}</p>
                             </div>
-{{--                            <a class="btn-primary" href="{{route('comments.reply',[$topic])}}">点击</a>--}}
+                            {{--                            <a class="btn-primary" href="{{route('comments.reply',[$topic])}}">点击</a>--}}
                             {{--评论开始--}}
                             <div class="post-block post-comments ">
-                                <h3 class="heading-primary"><i class="fa fa-comments"></i>评论 ({{$topic->reply_count}})
-                                </h3>
+                                <div class="row">
+                                    <h3 class="heading-primary pull-left"><i class="fa fa-comments"></i>评论
+                                        ({{$topic->reply_count}})</h3>
+                                    <button class="btn btn-info pull-right clickCheck" data-toggle="modal"
+                                            data-target="#replyModal" data-info='{"topic_id":{{$topic->id}}}'
+                                            style="margin-right:15px;width:200px">发表评论
+                                    </button>
+                                    @includeWhen(Auth::check(),'topics.__comment_box')
+                                </div>
+
                                 <div id="comments" class="row" style="margin-right: 0px"></div>
                             </div>
-                            @include('topics.__comment_box')
                             {{--评论结束--}}
                         </div>
                     </article>
@@ -104,7 +111,75 @@
         </div>
     </div>
     <script>
+        //删除评论或回复
+        function deleteComment(data) {
+            let id = $(data).attr('data-id');
+            console.log(id);
+            let url = '//www.blogtwo.bai/comments/' + id;
+            axios.delete(url)
+                .then(function (response) {
+                    console.log(response.data['msg'])
+                    swal({
+                        text: response.data['msg'],
+                        icon: 'success',
+                        button: '确定',
+                    }).then(function (isConfirm) {
+                        location.reload();
+                    })
+                }).catch(function (error) {
+                if (error.response.status === 419 || error.response.status === 404) {
+                    swal({
+                        text: '当前页面以过期，请刷新页面后再操作',
+                        icon: 'warning',
+                        buttons: ['取消', '确定'],
+                    }).then(function (isConfirm) {
+                        if (isConfirm) {
+                            location.reload();
+                        }
+                    })
+                } else if (error.response.status === 403) {
+                    swal({
+                        text: '您没有权限进行此项操作！',
+                        icon: 'error',
+                        button: '确定',
+                    })
+                }
+            });
+        };
+
+        //加载模态框并添加评论属性倒form
+        $("body").on('click', ".clickCheck", function (e) {
+                    @auth
+            let data = $(this).attr('data-info');
+            data = $.parseJSON(data);
+            if (data.id) {
+                let html = '<input type="hidden" name="id" value="' + data.id + '">' +
+                    '<input type="hidden" name="topic_id" value="' + data.topic_id + '">' +
+                    '<input type="hidden" name="user_id" value="' + data.user_id + '">' +
+                    '<input type="hidden" name="parent_id" value="' + data.parent_id + '">' +
+                    '<input type="hidden" name="parent_user_id" value="' + data.parent_user_id + '">';
+                $('#replyModal .modal-body #sendCommentForm #commentFormHidden').empty().append(html);
+            } else {
+                let html = '<input type="hidden" name="topic_id" value="' + data.topic_id + '">';
+                $('#replyModal .modal-body #sendCommentForm #commentFormHidden').empty().append(html);
+            }
+            @else
+            swal({
+                text: '当前未登录，是否前往登录页面？',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+            }).then(function (isconfirm) {
+                if (isconfirm) {
+                    window.location = '{{route('login')}}';
+                }
+            });
+            @endauth
+
+        });
+
+        {{--});--}}
         $(document).ready(function () {
+
             let ids = [];//评论id数组，
             let replies = [];//回复div元素数组
             let winSize = $(window).height();//当前可见区域大小

@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     {{--token--}}
-    <meta  name="csrf-token"  content="{{  csrf_token()  }}">
+    <meta name="csrf-token" content="{{  csrf_token()  }}">
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light"
           rel="stylesheet" type="text/css">
@@ -37,6 +37,7 @@
 
 <body>
 <div class="body">
+
     @include('layouts.__header')
     <div role="main" class="main {{route_class().'-page'}}">
 
@@ -54,6 +55,17 @@
                 </div>
             </div>
         </section>
+        @if(Auth::check()&&Auth::user()->verified==false)
+            <div class="col-md-10 col-md-offset-1">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <strong>注册成功，验证邮件已发送到您的邮箱，请尽快验证！如果您未收到邮件请点击
+                        <a href="{{route('register.show.verification')}}">手动验证</a>发送邮件到您的邮箱。
+                    </strong>
+                </div>
+            </div>
+        @endif
         @yield('content')
     </div>
 

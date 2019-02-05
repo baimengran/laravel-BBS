@@ -18,12 +18,26 @@
                                 <a href="{{route('users.show',[$reply->parentUser])}}">{{$reply->parentUser->name}}</a>
                             @endif
                             <span class="pull-right">
-                                    <span> <a href="#"><i class="fa fa-reply"></i> 回复</a></span>
+                                @can('delete',$reply)
+                                    <span>
+                                    <a class="btn btn-default btn-xs " data-id="{{$reply->id}}"
+                                       href="javascript:void(0)" onclick="deleteComment(this)"><i
+                                                class="fa fa-trash-o"></i> 删除</a>
+                                    <a class="btn btn-default btn-xs " data-id="{{$reply->id}}"><i
+                                                class="fa fa-edit"></i> 修改</a>
+                                </span>
+                                @endcan
+                                <span> <a class="clickCheck" href="javascript:void(0)"
+                                          data-info='{"id":{{$reply->id}},"topic_id":{{$reply->topic_id}},"user_id":{{$reply->user_id}},"parent_id":{{$reply->parent_id}},"parent_user_id":{{$reply->parent_user_id}}}'
+                                          data-toggle="modal" data-target="#replyModal"
+                                          data-whatever="@ {{$reply->user->name}}"><i
+                                                class="fa fa-reply"></i> 回复</a></span>
                                 </span>
                             </span>
                         {!! $reply->content !!}
                         <span class="date pull-right">{{$reply->created_at->diffForHumans()}}</span>
                     </div>
+
                 </div>
             </li>
         @endforeach

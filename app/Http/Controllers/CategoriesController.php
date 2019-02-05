@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class CategoriesController extends Controller
 {
     //
+    public function __construct()
+    {
+
+    }
 
     public function show(Category $category)
     {
@@ -22,6 +26,7 @@ class CategoriesController extends Controller
 
         }
         $topics = Topic::with(['user:id,name,img', 'category:id,name'])->whereIn('category_id',$id)->paginate(15);
+        setSessionCurrentUrl();
 
         return view('topics.index', ['topics' => $topics, 'category' => $category]);
     }

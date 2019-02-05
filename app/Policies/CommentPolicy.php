@@ -30,7 +30,7 @@ class CommentPolicy
      */
     public function create(User $user)
     {
-        //
+
     }
 
     /**
@@ -43,6 +43,7 @@ class CommentPolicy
     public function update(User $user, Comment $modelsPolicy)
     {
         //
+        return $user->id == $modelsPolicy->usre_id;
     }
 
     /**
@@ -54,7 +55,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $modelsPolicy)
     {
-        //
+
         return $user->id===$modelsPolicy->user_id;
     }
 }

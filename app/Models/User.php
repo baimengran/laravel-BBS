@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
+use App\Notifications\UserRegisterEmailVerification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -27,9 +29,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function gravatar($size = '100')
+    public function gravatar($email, $size = '100')
     {
-        $hash = md5(strtolower(trim($this->attributes['email'])));
+        $hash = md5(strtolower(trim($this->attributes['email'] ?? $email)));
         return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
 
@@ -41,5 +43,41 @@ class User extends Authenticatable
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+
+
+    public function topicNotify($instance)
+    {
+        //如果要通知的是当前用户，则不进行通知操作
+        if ($this->id == \Auth::id()) {
+            return;
+        }
+        $this->increment('notification_count');
+        $this->notify($instance);
+    }
+
+    /**
+     * 数据库通知标记已读
+     */
+    public function markAsRead(){
+        $this->notification_count=0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
+    }
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function sendRegisterNotification($user){
+        $this->notify(new UserRegisterEmailVerification($user));
     }
 }

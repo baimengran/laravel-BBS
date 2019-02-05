@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
                     //
                     'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . \Auth::id(),
                     'email' => 'required|email|unique:users,email,' . \Auth::id(),
-                    'introduction' => 'max:80|alpha_dash',
+                    'introduction' => 'nullable|max:100',
                     'phone' => 'nullable|digits:11',
                     'company' => 'nullable',
                     'position' => 'nullable',
@@ -47,6 +47,18 @@ class UserRequest extends FormRequest
         }
     }
 
+    public function attributes()
+    {
+        return [
+            'name'=>'用户名',
+            'email'=>'邮箱',
+            'introduction'=>'简介',
+            'phone'=>'电话',
+            'company'=>'公司',
+            'position'=>'任职',
+            'work_address'=>'公司地址',
+        ];
+    }
 
     public function failedValidation(Validator $validator)
     {

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\Topic;
 use App\Models\User;
+use App\Policies\CommentPolicy;
 use App\Policies\TopicPolicy;
 use App\Policies\UserPolcy;
 use Illuminate\Support\Facades\Gate;
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Model' => 'App\Policies\ModelPolicy',
         User::class => UserPolcy::class,
         Topic::class => TopicPolicy::class,
+        Comment::class=>CommentPolicy::class,
     ];
 
     /**

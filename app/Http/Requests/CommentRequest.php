@@ -13,7 +13,7 @@ class CommentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'content'=>'required|min:2',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'content'=>'评论',
         ];
     }
 }

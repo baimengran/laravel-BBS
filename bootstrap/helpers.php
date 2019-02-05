@@ -6,6 +6,16 @@
  * Time: 0:43
  */
 
+
+/**
+ * 设置当前url到session
+ *
+ */
+function setSessionCurrentUrl()
+{
+    return session(['re_lo_url'=>url()->current()]);
+}
+
 /**
  * 返回路径名称供页面class使用
  * @return string 路由名称字符串
@@ -35,7 +45,8 @@ function make_excerpt($value, $length = 200)
  * @param string $code 字符编码
  * @return string 截取后字符串
  */
-function cut_str($string, $sublen, $start = 0, $code = 'UTF-8') {
+function cut_str($string, $sublen, $start = 0, $code = 'UTF-8')
+{
 //    if(){
 //
 //    }
@@ -52,14 +63,14 @@ function cut_str($string, $sublen, $start = 0, $code = 'UTF-8') {
         for ($i = 0; $i < $strlen; $i++) {
             if ($i >= $start && $i < ($start + $sublen)) {
                 if (ord(substr($string, $i, 1)) > 129) {
-                    $tmpstr.= substr($string, $i, 2);
+                    $tmpstr .= substr($string, $i, 2);
                 } else {
-                    $tmpstr.= substr($string, $i, 1);
+                    $tmpstr .= substr($string, $i, 1);
                 }
             }
             if (ord(substr($string, $i, 1)) > 129) $i++;
         }
-        if (strlen($tmpstr) < $strlen) $tmpstr.= "";
+        if (strlen($tmpstr) < $strlen) $tmpstr .= "";
         return $tmpstr;
     }
 }

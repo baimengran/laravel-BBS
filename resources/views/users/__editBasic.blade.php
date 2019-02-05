@@ -35,14 +35,16 @@
             </div>
         </div>
     </div>
-    <div class="form-group" style="padding-bottom: 1%">
+    <div id="introduction" class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}" style="padding-bottom: 1%">
         <label class="col-md-3 control-label"><strong>简介</strong></label>
         <div class="col-md-6">
             {{--<div class="input-group input-group-lg mb-md">--}}
             {{--<span class="input-group-addon btn-danger">@</span>--}}
+            <div class="inerr">
             <textarea placeholder="Introduction" class="form-control" name="introduction" rows="3"
                       id="textareaDefault">{{$user->introduction}}</textarea>
             {{--</div>--}}
+            </div>
         </div>
     </div>
 
@@ -98,7 +100,7 @@
                 button: '确定',
             }).then(function (is) {
                 window.location.reload();
-                capture(data);
+
             })
         }).catch(function (error) {
             if (error.response.status === 419 || error.response.status === 404) {
@@ -112,7 +114,7 @@
                     }
                 });
             } else if (error.response.status === 422) {
-                console.log(error.response.data.errors.name);
+                console.log(error.response.data.errors.introduction[0]);
                 // each(error.response.data.errors,function(k,v){
                 //     console.log(v);
                 // });
@@ -120,13 +122,18 @@
                 let html2 = "</strong></span>";
                 $(".help-block").empty();
 
-                $(".naerr").after(html1 + error.response.data.errors.name[0] + html2);
-                $("#name").addClass(' has-error');
-
-
-                $(".pherr").after(html1 + error.response.data.errors.phone[0] + html2)
-                $("#phone").add(' has-error');
-
+                $.each(error.response.data,function(){
+                    if(this.name){
+                        $(".naerr").after(html1 + this.name + html2);
+                        $("#name").addClass(' has-error');
+                    }else if(this.introduction){
+                        $(".inerr").after(html1 + this.introduction + html2);
+                        $("#introduction").addClass(' has-error');
+                    }else if(this.phone){
+                        $(".pherr").after(html1 + this.phone + html2)
+                        $("#phone").add(' has-error');
+                    }
+                });
             } else if (error.response.status === 403) {
                 swal({
                     text: '您当前没有操作此功能权限',

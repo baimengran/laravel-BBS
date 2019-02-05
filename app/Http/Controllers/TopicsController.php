@@ -15,25 +15,31 @@ use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 class TopicsController extends Controller
 {
 
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+       // session(['re_lo_url'=>url()->current()]);
     }
 
     //
     public function index()
     {
         $topics = Topic::with('user:id,name,img', 'category:id,name,path')->orderBy('updated_at', 'DESC')->paginate(15);
-        //dd($topics);
+        //记录url供登录时跳转
+        setSessionCurrentUrl();
         return view('topics.index', ['topics' => $topics]);
     }
 
     public function show(Request $request, Topic $topic)
     {
+        dd($topic,$request->all());
 //        //RUL矫正，永久重定向到正确的URL上
         if (!empty($topic->slug && $topic->slug != $request->slug)) {
             return redirect($topic->link(), 301);
         }
+        //记录url供登录时跳转
+        setSessionCurrentUrl();
         return view('topics.show', ['topic' => $topic]);
     }
 
@@ -104,10 +110,14 @@ class TopicsController extends Controller
     }
 
 
-    public function destroy(Topic $topic)
+    public function destroy(Topic $topic,Request $request)
     {
         $this->authorize('delete', $topic);
         $topic->delete();
+
+        if($request->ajax()){
+            return response()->json(['success'=>'删除成功']);
+        }
 
         return redirect()->route('topics.index')->with('success', '删除成功！');
     }

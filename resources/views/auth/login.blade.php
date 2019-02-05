@@ -38,7 +38,7 @@
                                         <div class="row">
                                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                                 <div class="col-md-12">
-                                                    <a class="pull-right" href="#">(忘记密码?)</a>
+                                                    <a class="pull-right" href="{{route('password.request')}}">(忘记密码?)</a>
                                                     <label>密码</label>
                                                     <input type="password" name="password" value=""
                                                            class="form-control input-lg" required >

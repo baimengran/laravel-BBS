@@ -75,7 +75,7 @@
             headers: {'Content-Type': 'multipart/form-data'}
         };
         //console.log(formData.get('img'));
-        axios.post('{{route('users.editAvatar',[$user])}}', formData, config)
+        axios.put('{{route('users.editAvatar',[$user])}}', formData, config)
             .then(function (response) {
                 console.log(response.data)
                 if(response.data===0){

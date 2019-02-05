@@ -26,19 +26,23 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('email_verification','Auth\RegisterController@showRegisterEmailVerification')->name('register.show.verification');
+Route::get('send_email_verification','Auth\RegisterController@sendRegisterEmailVerification')->name('register.send.verification');
+Route::get('email_verification/{verification}','Auth\RegisterController@registerEmailVerification')->name('register.verification');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.sendEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.resetShow');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 
 
 //用户操作
-Route::get('users/{user}', 'UsersController@show')->name('users.show');
+Route::match(['get', 'post'], 'users/{user}/{notification?}', 'UsersController@show')->name('users.show')
+    ->where('notification', 'notification');
 Route::post('users/{user}/edit', 'UsersController@edit')->name('users.edit');
-Route::put('users/{user}/update', 'UsersController@editBasic')->name('users.editBasic');
-Route::post('users/{user}/update', 'UsersController@editAvatar')->name('users.editAvatar');
+Route::put('users/{user}/update/basic', 'UsersController@editBasic')->name('users.editBasic');
+Route::put('users/{user}/update/avatar', 'UsersController@editAvatar')->name('users.editAvatar');
 
 //帖子
 Route::get('topics', 'TopicsController@index')->name('topics.index');
@@ -59,6 +63,9 @@ Route::get('categories/{category}', 'CategoriesController@show')->name('categori
 //评论
 Route::get('comments/{topic}/index', 'CommentsController@index')->name('comments.index');
 Route::post('comments/{topic}/reply', 'CommentsController@reply')->name('comments.reply');
+Route::post('comments/', 'CommentsController@store')->name('comments.store');
+Route::post('comments/{comment}/edit', 'CommentsController@edit')->name('comments.edit');
+Route::delete('comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
 
 
 

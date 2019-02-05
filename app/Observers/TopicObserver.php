@@ -40,4 +40,9 @@ class TopicObserver
     }
 
 
+    public function deleted(Topic $topic)
+    {
+        \DB::table('comments')->where('topic_id', $topic->id)->delete();
+    }
+
 }

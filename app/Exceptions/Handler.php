@@ -36,6 +36,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if($exception instanceof Da){
+
+        }
         parent::report($exception);
     }
 

@@ -27,16 +27,23 @@
                                 <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
                                     <nav>
                                         <ul class="nav nav-pills" id="mainNav">
+                                            @if(Auth::user()->notification_count>0)
+                                                <a href="{{route('users.show',[Auth::user(),'notification'])}}" onclick="notification_click()">
+                                                <span class="badge" style="background-color:#d23434dd;margin-top:4%;">
+                                                        {{Auth::user()->notification_count}}
+                                                </span>
+                                                </a>
+                                            @endif
                                             <li class="dropdown dropdown-mega dropdown-mega-signin signin logged"
                                                 id="headerAccount">
                                                 <a class="dropdown-toggle"
                                                    href="{{route('users.show',[Auth::user()])}}">
                                                     <i class="fa fa-user"></i> {{Auth::user()->name}}
                                                     <i class="fa fa-caret-down"></i></a>
+
                                                 <ul class="dropdown-menu">
                                                     <li>
                                                         <div class="dropdown-mega-content">
-
                                                             <div class="row">
                                                                 <div class="col-md-8">
                                                                     <div class="user-avatar">
