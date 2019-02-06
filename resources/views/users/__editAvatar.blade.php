@@ -70,12 +70,13 @@
             })
         }
         var formData = new FormData();
+        formData.append('_method','put');
         formData.append('img', file);
         let config = {
             headers: {'Content-Type': 'multipart/form-data'}
         };
         //console.log(formData.get('img'));
-        axios.put('{{route('users.editAvatar',[$user])}}', formData, config)
+        axios.post('{{route('users.editAvatar',[$user])}}', formData, config)
             .then(function (response) {
                 console.log(response.data)
                 if(response.data===0){

@@ -56,6 +56,11 @@
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <ul class="list-account-options">
+                                                                        @can('manage_contents')
+                                                                            <li>
+                                                                                <a href="{{url(config('administrator.uri'))}}">管理后台</a>
+                                                                            </li>
+                                                                            @endcan
                                                                         <li>
                                                                             <a href="{{route('users.show',[Auth::user()])}}">个人中心</a>
                                                                         </li>

@@ -93,6 +93,12 @@
 
 {{--<!-- Theme Initialization Files -->--}}
 <script src="{{asset('js/theme/theme.init.js')}}"></script>
+
+{{--用户切换包--}}
+@if(app()->isLocal())
+    @include('sudosu::user-selector')
+@endif
+
 <script src="{{asset('js/app.js')}}"></script>
 @yield('scripts')
 

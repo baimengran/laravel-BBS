@@ -7,9 +7,10 @@ use App\Models\Topic;
 use App\Models\User;
 use App\Policies\CommentPolicy;
 use App\Policies\TopicPolicy;
-use App\Policies\UserPolcy;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Horizon\Horizon;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -20,9 +21,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        User::class => UserPolcy::class,
+        User::class => UserPolicy::class,
         Topic::class => TopicPolicy::class,
-        Comment::class=>CommentPolicy::class,
+        Comment::class => CommentPolicy::class,
     ];
 
     /**
@@ -34,6 +35,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //定义horizon访问权限
+        Horizon::auth(function ($request) {
+            //是否是站长
+            return \Auth::user()->hasRole('Founder');
+        });
     }
 }
