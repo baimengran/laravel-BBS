@@ -26,6 +26,7 @@ class TopicsController extends Controller
     public function index()
     {
         $topics = Topic::with('user:id,name,img', 'category:id,name,path')->orderBy('updated_at', 'DESC')->paginate(15);
+        //dd($topics[0]->user->img);
         //记录url供登录时跳转
         setSessionCurrentUrl();
         return view('topics.index', ['topics' => $topics]);

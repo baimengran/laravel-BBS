@@ -29,7 +29,7 @@
                     <div class="post-meta">
                         <span><i class="fa fa-calendar"></i> {{$topic->updated_at->diffForHumans()}} </span>
                         <span><i class="fa fa-user"></i> By <a
-                                    href="{{$topic->link()}}">{{$topic->user->name}}</a> </span>
+                                    href="{{route('users.show',[$topic->user])}}">{{$topic->user->name}}</a> </span>
                         <span><i class="fa fa-th-list"></i>
 
                             <a href="{{route('categories.show',[$topic->category->id])}}">

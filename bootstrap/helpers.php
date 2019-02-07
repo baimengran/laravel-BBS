@@ -7,6 +7,50 @@
  */
 
 
+function model_admin_link($title,$model){
+    return model_link($title,$model,'admin');
+}
+
+/**
+ * 根据标题和模型获取标题url
+ * @param $title
+ * @param $model
+ * @param string $prefix
+ * @return string
+ */
+function model_link($title,$model,$prefix=''){
+    //获取数据模型的复数蛇形命名
+    $model_name=model_plural_name($model);
+
+    //初始化前缀
+    $prefix=$prefix?"/$prefix/":'/';
+
+    //使用站点url拼接圈梁url
+    $url = config('app.url').$prefix.$model_name.'/'.$model->id;
+
+    //拼接HTML A标签，并返回
+    return '<a href="'.$url.'" target="_blank">'.$title.'</a>';
+}
+
+/**
+ * 根据模型获取模型类名的蛇形复数名
+ * @param $model
+ * @return string
+ */
+function model_plural_name($model){
+    //从实体中获取完成类名，例如：App\Models\User
+    $full_class_name=get_class($model);
+
+    //获取基础类名，例如：'App\Models\User' 得到'User'
+    $class_name=class_basename($full_class_name);
+
+    //蛇形命名，例如：'User' 得到 'user','FooBar' 得到 'foo_bar'
+    $snake_case_name=snake_case($class_name);
+
+    //获取子串的复数形式，例如： 'user' 得到 'users'
+    return str_plural($snake_case_name);
+}
+
 /**
  * 设置当前url到session
  *

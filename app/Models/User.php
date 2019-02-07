@@ -60,8 +60,9 @@ class User extends Authenticatable
     /**
      * 数据库通知标记已读
      */
-    public function markAsRead(){
-        $this->notification_count=0;
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
         $this->save();
         $this->unreadNotifications->markAsRead();
     }
@@ -70,7 +71,7 @@ class User extends Authenticatable
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -78,7 +79,32 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function sendRegisterNotification($user){
+    /**
+     * 注册邮件通知
+     * @param $user
+     */
+    public function sendRegisterNotification($user)
+    {
         $this->notify(new UserRegisterEmailVerification($user));
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        //如果password值的长度等于60，即当前password值已经加密
+        if (strlen($value) != 60) {
+            //不等于60做加密处理
+            $value = bcrypt($value);
+        }
+        $this->attributes['password'] = $value;
+    }
+
+    public function setImgAttribute($path)
+    {
+        //如果不是http子串开头，说明此图片是后台上传的，需要补全url
+        if (!starts_with($path, 'http')) {
+            //拼接完成url
+            $path = config('app.url') . "/uploads/images/avatars/$path";
+        }
+        $this->attributes['img'] = $path;
     }
 }
