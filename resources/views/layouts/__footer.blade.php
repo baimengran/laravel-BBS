@@ -4,58 +4,45 @@
             <div class="footer-ribbon">
                 <span>Get in Touch</span>
             </div>
-            <div class="col-md-3">
-                <div class="newsletter">
-                    <h4>Newsletter</h4>
-                    <p>Keep up on our always evolving product features and technology. Enter your e-mail and
-                        subscribe to our newsletter.</p>
-
-                    <div class="alert alert-success hidden" id="newsletterSuccess">
-                        <strong>Success!</strong> You've been added to our email list.
-                    </div>
-
-                    <div class="alert alert-danger hidden" id="newsletterError"></div>
-
-                    <form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
-                        <div class="input-group">
-                            <input class="form-control" placeholder="Email Address" name="newsletterEmail"
-                                   id="newsletterEmail" type="text">
-                            <span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
-										</span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <h4>Latest Tweets</h4>
-                <div id="tweet" class="twitter" data-plugin-tweets
-                     data-plugin-options="{'username': '', 'count': 2}">
-                    <p>Please wait...</p>
-                </div>
+            <div class="col-md-6">
+                <h4>{{setting('site_footer_one_name','关于本网站','site_footer')}}</h4>
+                <p>
+                    {{setting('site_footer_one_content','','site_footer')}}
+                    <a href="{{route('help')}}" class="btn-flat btn-xs">View More <i class="fa fa-arrow-right"></i></a>
+                </p>
+                <hr class="light">
             </div>
             <div class="col-md-4">
                 <div class="contact-details">
-                    <h4>Contact Us</h4>
+                    <h4>{{setting('site_footer_two_name','','site_footer')}}</h4>
                     <ul class="contact">
-                        <li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City
-                                Name, United States</p></li>
-                        <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong> (123) 456-789</p></li>
+                        <li><p><i class="fa fa-map-marker"></i>
+                                <strong>Address:</strong> {{setting('site_footer_two_address','','site_footer')}}</p>
+                        </li>
+                        <li><p><i class="fa fa-phone"></i>
+                                <strong>Phone:</strong> {{setting('site_footer_two_phone','','site_footer')}}
+                            </p></li>
                         <li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a
-                                        href="mailto:mail@example.com">mail@example.com</a></p></li>
+                                        href="mailto:{{setting('site_footer_two_email','','site_footer')}}">{{setting('site_footer_two_email','','site_footer')}}</a>
+                            </p></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-                <h4>Follow Us</h4>
-                <ul class="social-icons">
-                    <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank"
-                                                         title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                    <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank"
-                                                        title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                    <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank"
-                                                         title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
+                <h4>{{setting('site_footer_three_name','','site_footer')}}</h4>
+                <img width="100px" onmouseover="this.style.cursor='pointer';this.style.cursor='hand'"
+                     onmouseout="this.style.cursor='default'" data-toggle="modal" data-target="#wechatQR"
+                     src="{{asset('uploads/images/site/'.setting('site_footer_three_content','','site_footer'))}}"
+                     alt="二维码">
+
+                <div id="wechatQR" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            {{--<div class='carousel-inner img-responsive img-rounded' id="img_show">--}}
+                            <img src="{{asset('uploads/images/site/'.setting('site_footer_three_content','','site_footer'))}}">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,20 +51,12 @@
             <div class="row">
                 <div class="col-md-1">
                     <a href="{{route('home')}}" class="logo">
-                        <img alt="Porto Website Template" class="img-responsive" src="{{asset('images/logo-footer.png')}}">
+                        <img alt="Laravel BlogTwo" class="img-responsive"
+                             src="{{asset('uploads/images/site/'.setting('footer_logo'))}}">
                     </a>
                 </div>
-                <div class="col-md-7">
-                    <p>© Copyright 2017. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-4">
-                    <nav id="sub-menu">
-                        <ul>
-                            <li><a href="page-faq.html">FAQ's</a></li>
-                            <li><a href="sitemap.html">Sitemap</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
-                        </ul>
-                    </nav>
+                <div class="col-md-11">
+                    <p>{{setting('site_footer_copyright','','site_footer')}}</p>
                 </div>
             </div>
         </div>

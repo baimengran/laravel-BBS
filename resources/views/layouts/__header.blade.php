@@ -7,7 +7,7 @@
                     <div class="header-logo">
                         <a href="{{route('home')}}">
                             <img alt="Porto" width="111" height="54" data-sticky-width="82" data-sticky-height="40"
-                                 data-sticky-top="33" src="{{asset('images/logo.png')}}">
+                                 data-sticky-top="33" src="{{asset('uploads/images/site/'.setting('header_logo'))}}">
                         </a>
                     </div>
                 </div>

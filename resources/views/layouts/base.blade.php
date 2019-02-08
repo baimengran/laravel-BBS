@@ -6,15 +6,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>@yield('title','Blog')</title>
+    <title>@yield('title','Blog') - {{setting('site_name','Laravel')}}</title>
 
-    <meta name="keywords" content="laravel-Blog"/>
-    <meta name="description" content="@yield('description','laravel-Blog')"/>
-    <meta name="author" content="13466320356@sina.com"/>
+    <meta name="keywords" content="@yield('keyword',setting('seo_keyword','Laravel BlogTwo'))"/>
+    <meta name="description" content="@yield('description',setting('seo_description','Laravel BlogTwo'))"/>
+    <meta name="author" content="{{setting('author','13466320356@163.com')}}"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon"/>
-    <link rel="apple-touch-icon" href="{{asset('images/apple-touch-icon.png')}}">
+    <link rel="shortcut icon" href="{{asset('uploads/images/site/favicon.ico')}}" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="{{asset('uploads/images/site/apple-touch-icon.png')}}">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">

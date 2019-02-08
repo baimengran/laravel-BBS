@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' => config('app.name','Laravel'),
+    'title' => config('app.name', 'Laravel'),
 
     /*
      * The path to your model config directory
@@ -59,15 +59,19 @@ return array(
      *	)
      */
     'menu' => [
-        '用户与权限'=>[
+        '用户与权限' => [
             'users',
             'roles',
             'permissions',
         ],
-        '内容管理'=>[
+        '内容管理' => [
             'categories',
             'topics',
             'comments',
+        ],
+        '站点设置' => [
+            'settings.site',
+            'settings.site_footer'
         ],
     ],
 
@@ -78,7 +82,7 @@ return array(
      * @type closure
      */
     'permission' => function () {
-        return Auth::check()&&Auth::user()->can('manage_contents');
+        return Auth::check() && Auth::user()->can('manage_contents');
     },
 
     /*
@@ -101,7 +105,7 @@ return array(
      *
      * @type string
      */
-    'home_page' => 'users',
+    'home_page' => 'topics',
 
     /*
      * The route to which the user will be taken when they click the "back to site" button
@@ -115,7 +119,7 @@ return array(
      *
      * @type string
      */
-    'login_path' => 'login',
+    'login_path' => 'permission-denied',
 
     /*
      * The logout path is the path where Administrator will send the user when they click the logout link

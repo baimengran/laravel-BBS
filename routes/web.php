@@ -11,12 +11,15 @@
 |
 */
 
+//后台权限
+Route::get('permission-denied','StaticPagesController@permissionDenied')->name('permission-denied');
+
 //首页
 Route::get('/', 'indexController@index')->name('home');
 //关于
-Route::get('/about', 'staticPagesController@about')->name('about');
+Route::get('/about', 'StaticPagesController@about')->name('about');
 //帮助
-Route::get('/help', 'staticPagesController@help')->name('help');
+Route::get('/help', 'StaticPagesController@help')->name('help');
 
 //登录
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
