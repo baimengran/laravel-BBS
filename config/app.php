@@ -1,6 +1,7 @@
 <?php
 
 
+
 return [
 
     /*
@@ -183,7 +184,8 @@ return [
         //laravel-Debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
         //viewComposer
-        App\Http\ViewComposers\ComposerServiceProvider::class,
+        App\Http\ViewComposers\NavigationServiceProvider::class,
+        App\Http\ViewComposers\ActiveUserServiceProvider::class
 
     ],
 

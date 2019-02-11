@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ActiveUserHelper;
+use App\Models\Traits\LastActivedAtHelper;
 use App\Notifications\ResetPasswordNotification;
 use App\Notifications\UserRegisterEmailVerification;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +14,8 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use ActiveUserHelper;//计算用户活跃度
+    use LastActivedAtHelper;//最后活跃时间
     /**
      * The attributes that are mass assignable.
      *

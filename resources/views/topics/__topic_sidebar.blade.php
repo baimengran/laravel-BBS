@@ -14,106 +14,44 @@
     <hr>
     <div class="tabs mb-xlg">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Popular</a></li>
-            <li><a href="#recentPosts" data-toggle="tab">Recent</a></li>
+            <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-users"></i> 活跃用户</a></li>
+            <li><a href="#recentPosts" data-toggle="tab">资源推荐</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="popularPosts">
                 <ul class="simple-post-list">
+                    @isset($active_users)
+                        @foreach($active_users as $active_user)
                     <li>
                         <div class="post-image">
                             <div class="img-thumbnail">
-                                <a href="blog-post.html">
-                                    <img src="" alt="">
+                                <a href="{{route('users.show',[$active_user->id])}}">
+                                    <img width="50px" src="{{$active_user->img}}" alt="{{$active_user->name}}">
                                 </a>
                             </div>
                         </div>
                         <div class="post-info">
-                            <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
-                            <div class="post-meta">
-                                Jan 10, 2017
-                            </div>
+                            <a href="{{route('users.show',[$active_user->id])}}">{{$active_user->name}}</a>
                         </div>
                     </li>
-                    <li>
-                        <div class="post-image">
-                            <div class="img-thumbnail">
-                                <a href="blog-post.html">
-                                    <img src="" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-                            <div class="post-meta">
-                                Jan 10, 2017
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="post-image">
-                            <div class="img-thumbnail">
-                                <a href="blog-post.html">
-                                    <img src="" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="blog-post.html">Odiosters Nullam Vitae</a>
-                            <div class="post-meta">
-                                Jan 10, 2017
-                            </div>
-                        </div>
-                    </li>
+                        @endforeach
+                    @endisset
                 </ul>
             </div>
             <div class="tab-pane" id="recentPosts">
                 <ul class="simple-post-list">
+                    @isset($links)
+                        @foreach($links as $link)
                     <li>
-                        <div class="post-image">
-                            <div class="img-thumbnail">
-                                <a href="blog-post.html">
-                                    <img src="" alt="">
-                                </a>
-                            </div>
-                        </div>
                         <div class="post-info">
-                            <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+                            <a href="{{$link->link}}">{{$link->title}}</a>
                             <div class="post-meta">
-                                Jan 10, 2017
+                                {{$link->created_at->diffForHumans()}}
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="post-image">
-                            <div class="img-thumbnail">
-                                <a href="blog-post.html">
-                                    <img src="" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="blog-post.html">Odiosters Nullam Vitae</a>
-                            <div class="post-meta">
-                                Jan 10, 2017
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="post-image">
-                            <div class="img-thumbnail">
-                                <a href="blog-post.html">
-                                    <img src="" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
-                            <div class="post-meta">
-                                Jan 10, 2017
-                            </div>
-                        </div>
-                    </li>
+                        @endforeach
+                        @endisset
                 </ul>
             </div>
         </div>

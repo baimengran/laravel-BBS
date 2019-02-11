@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Comment;
+use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
 use App\Observers\CommentObserver;
+use App\Observers\LinkObserver;
 use App\Observers\TopicObserver;
 use App\Observers\UserObserver;
 use Carbon\Carbon;
@@ -28,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
         Comment::observe(CommentObserver::class);
         //User观察者
         User::observe(UserObserver::class);
+        //Link观察者
+        Link::observe(LinkObserver::class);
     }
 
     /**

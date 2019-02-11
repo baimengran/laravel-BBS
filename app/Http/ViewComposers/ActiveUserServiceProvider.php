@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2019/1/9
- * Time: 9:17
+ * Date: 2019/2/9
+ * Time: 12:40
  */
 
 namespace App\Http\ViewComposers;
@@ -12,18 +12,14 @@ namespace App\Http\ViewComposers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-
-class ComposerServiceProvider extends ServiceProvider
+class ActiveUserServiceProvider extends ServiceProvider
 {
 
     public function boot()
     {
         View::composer([
-            'layouts.base',
-        ],
-            'App\Http\ViewComposers\Navigation'
-
-        );
+            'topics.index', 'topics.show',
+        ], 'App\Http\ViewComposers\ActiveUser');
     }
 
     public function register()

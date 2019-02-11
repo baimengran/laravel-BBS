@@ -71,7 +71,8 @@ return array(
         ],
         '站点设置' => [
             'settings.site',
-            'settings.site_footer'
+            'settings.site_footer',
+            'links'
         ],
     ],
 

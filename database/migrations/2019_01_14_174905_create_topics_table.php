@@ -18,6 +18,7 @@ class CreateTopicsTable extends Migration
             $table->string('title')->index()->comment('标题');
             $table->text('body')->comment('帖子内容');
             $table->unsignedInteger('user_id')->unsigned()->index()->comment('用户id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('category_id')->unsigned()->index()->comment('分类id');
             $table->unsignedInteger('reply_count')->unsigned()->default(0)->comment('回复数量');
             $table->unsignedInteger('view_count')->unsigned()->default(0)->comment('查看数量');

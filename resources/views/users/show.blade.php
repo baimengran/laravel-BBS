@@ -25,11 +25,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h5>注册于：</h5>
-                                        <p>{{$user->created_at->diffForHumans()}}</p>
+                                        <p title="{{$user->created_at}}">{{$user->created_at->diffForHumans()}}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <h5>活跃于：</h5>
-                                        <p>fff</p>
+                                        <p title="{{$user->last_actived_at}}">{{$user->last_actived_at->diffForHumans()}}</p>
                                     </div>
                                 </div>
                                 <a class="btn btn-secondary mr-xs mb-sm"><i class="fa fa-plus-square"></i> 关注 Ta</a>
