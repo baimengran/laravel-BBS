@@ -15,7 +15,8 @@
 Route::get('permission-denied','StaticPagesController@permissionDenied')->name('permission-denied');
 
 //首页
-Route::get('/', 'indexController@index')->name('home');
+//Route::get('/', 'indexController@index')->name('home');
+Route::get('/','TopicsController@index')->name('home');
 //关于
 Route::get('/about', 'StaticPagesController@about')->name('about');
 //帮助

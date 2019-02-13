@@ -49,11 +49,12 @@ trait LastActivedAtHelper
         //从Redis中获取所有哈希表中的数据
         $datas = Redis::hGetAll($hash);
 
+
         //遍历，并同步到数据库中
         foreach ($datas as $user_id => $actived_at) {
             //将 redis 哈希表中的field(user_id)转换为数字(1)
             $user_id = str_replace($this->field_prefix, '', $user_id);
-            //只有当用户存在时才能更新到数据库中
+//            //只有当用户存在时才能更新到数据库中
             if ($user = $this->find($user_id)) {
                 $user->last_actived_at = $actived_at;
                 $user->save();
