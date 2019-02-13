@@ -1,7 +1,6 @@
 <?php
 
 
-
 return [
 
     /*
@@ -185,7 +184,9 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         //viewComposer
         App\Http\ViewComposers\NavigationServiceProvider::class,
-        App\Http\ViewComposers\ActiveUserServiceProvider::class
+        App\Http\ViewComposers\ActiveUserServiceProvider::class,
+        //easysms短信发送
+        App\Providers\EasySmsServiceProvider::class,
 
     ],
 
