@@ -38,6 +38,19 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'captcha' => 'required|captcha',
+        ], [
+            'captcha.required' => '验证码不能为空',
+            'captcha.captcha' => '请输入正确的验证码',
+        ]);
+    }
+
+
     public function redirectPath()
     {
         if(session()->has('re_lo_url')){

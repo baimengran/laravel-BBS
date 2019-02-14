@@ -74,11 +74,11 @@ Route::delete('comments/{comment}', 'CommentsController@destroy')->name('comment
 
 
 
-try {
-    $sms->send(17010153055, [
-        'content'  => '【白孟冉】您的验证码是1234。如非本人操作，请忽略本短信',
-    ]);
-} catch (\Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
-    $message = $exception->getException('yunpian')->getMessage();
-    dd($message);
-}
+//try {
+//    $sms->send(17010153055, [
+//        'content'  => '【白孟冉】您的验证码是1234。如非本人操作，请忽略本短信',
+//    ]);
+//} catch (\Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
+//    $message = $exception->getException('yunpian')->getMessage();
+//    dd($message);
+//}

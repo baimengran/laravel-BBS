@@ -50,6 +50,27 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                                                <div class="col-md-12">
+                                                    <label for="captcha">输入验证码</label>
+                                                    <input id="captcha" type="text" name="captcha"
+                                                           value=""
+                                                           class="form-control input-lg"
+                                                           placeholder="Captcha" required>
+                                                    <img class="captcha" src="{{captcha_src('flat')}}"
+                                                         onclick="this.src='/captcha/flat?'+Math.random()"
+                                                         title="点击图片重新获取验证码" style="margin-bottom: 0px; margin-top: 10px;cursor: pointer;">
+                                                    @if ($errors->has('captcha'))
+                                                        <span class="help-block">
+                                                        <strong style="color: #b7281f;">{{ $errors->first('captcha') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="row">
                                             <div class="col-md-6">
 															<span class="remember-box checkbox">
