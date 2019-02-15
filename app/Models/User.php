@@ -9,12 +9,14 @@ use App\Notifications\UserRegisterEmailVerification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     use HasRoles;
     use ActiveUserHelper;//计算用户活跃度
+
     use LastActivedAtHelper;//最后活跃时间
     /**
      * The attributes that are mass assignable.
@@ -22,7 +24,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'introduction', 'phone', 'company', 'position', 'work_address', 'img',
+        'name', 'email', 'password', 'introduction', 'phone',
+        'company', 'position', 'work_address', 'img', 'weixin_openid',
+        'weixin_unionid',
     ];
 
     /**
@@ -33,6 +37,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
 
     public function gravatar($email, $size = '100')
     {

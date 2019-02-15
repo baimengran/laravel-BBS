@@ -13,10 +13,17 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    //winxin网页授权
+    'weixin' => [
+        'client_id' => env('WEIXIN_KEY'),
+        'client_secret' => env('WEIXIN_SECRET'),
+        'redirect' => env('WEIXIN_REDIRECT_URI'),
+    ],
+
     //百度翻译API配置
-    'baidu_translate'=>[
-        'appid'=>env('BAIDU_TRANSLATE_APPID'),
-        'key'=>env('BAIDU_TRANSLATE_KEY'),
+    'baidu_translate' => [
+        'appid' => env('BAIDU_TRANSLATE_APPID'),
+        'key' => env('BAIDU_TRANSLATE_KEY'),
     ],
 
     'mailgun' => [
