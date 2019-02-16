@@ -19,10 +19,14 @@ use Illuminate\Http\Request;
 
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', ['namespace' => 'App\Http\Controllers\Api\V1'], function ($api) {
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Api\V1',
+    'middleware' => 'serializer:array',
+], function ($api) {
     $api->get('version', function () {
         return response('这里是 vi 版本');
     });
+    //登录注册
     $api->group([
         'middleware' => 'api.throttle',
         'limit' => config('api.rate_limits.sign.limit'),
@@ -44,6 +48,26 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers\Api\V1'], function ($a
         $api->put('authorizations/current', 'AuthorizationsController@update')->name('api.authorizations.update');
         //删除token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
+
+    });
+
+    //数据请求
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.access.limit'),
+        'expires' => config('api.rate_limits.access.expires'),
+    ], function ($api) {
+        //游客可以访问接口
+
+        //需要token验证的接口
+        $api->group(['middleware' => 'api.auth'], function ($api) {
+            //当前登录用户信息
+            $api->get('user', 'UsersController@me')->name('api.user.show');
+            //编辑登录用户信息
+            $api->patch('user', 'UsersController@update')->name('api.user.update');
+            //图片资源
+            $api->post('images', 'ImagesController@store')->name('api.images.store');
+        });
     });
 
 });

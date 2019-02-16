@@ -25,13 +25,29 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-            'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
-            'password' => 'required|string|min:6',
-            'verification_key' => 'required|string',
-            'verification_code' => 'required|string',
-        ];
+        switch ($this->method()){
+            case 'POST':
+                return [
+                    //
+                    'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
+                    'password' => 'required|string|min:6',
+                    'verification_key' => 'required|string',
+                    'verification_code' => 'required|string',
+                ];
+                break;
+            case 'PATCH':
+                $userId = \Auth::guard('api')->id();
+                return [
+                    'name'=>'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,'.$userId,
+                    'email'=>'email',
+                    'introduction'=>'max:80',
+                    'avatar_image_id'=>'exists:images,id,type,avatar,user_id,'.$userId,
+                    'company'=>'string',
+                    'position'=>'string',
+                    'work_address'=>'string',
+                ];
+                break;
+        }
     }
 
     public function attributes()
@@ -39,6 +55,18 @@ class UserRequest extends FormRequest
         return [
             'verification_key' => '短信验证码 key',
             'verification_code' => '短信验证码',
+            'introduction'=>'个人简介',
+            'company'=>'公司',
+            'position'=>'职位',
+            'work_address'=>'工作地址',
         ];
     }
+
+//    public function messages()
+//    {
+//        return parent::messages();
+//        return [
+//
+//        ];
+//    }
 }
