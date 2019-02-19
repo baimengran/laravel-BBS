@@ -14,6 +14,7 @@ use League\Fractal\TransformerAbstract;
 
 class CommentTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['user', 'topic'];
 
     public function transform(Comment $comment)
     {
@@ -27,5 +28,15 @@ class CommentTransformer extends TransformerAbstract
             'created_at' => $comment->created_at->toDateTimeString(),
             'updated_at' => $comment->updated_at->toDateTimeString(),
         ];
+    }
+
+    public function includeUser(Comment $comment)
+    {
+        return $this->item($comment->user, new UserTransformer());
+    }
+
+    public function includeTopic(Comment $comment)
+    {
+        return $this->item($comment->topic, new TopicTransformer());
     }
 }

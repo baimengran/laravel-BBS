@@ -62,13 +62,20 @@ $api->version('v1', [
         $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
         //话题列表
         $api->get('topics', 'TopicsController@index')->name('api.topics.index');
-        //用户发布的话题
+        //话题评论列表
+        $api->get('topics/{topic}/comments', 'CommentsController@index')->name('api.topics.comment.index');
+        //用户发布的话题列表
         $api->get('users/{user}/topics', 'TopicsController@userIndex')->name('api.users.topics.index');
+        //用户发布的评论列表
+        $api->get('users/{user}/comments', 'CommentsController@userIndex')->name('api.users.comments.index');
         //话题详情
         $api->get('topics/{topic}', 'TopicsController@show')->name('api.topics.show');
 
         //需要token验证的接口
         $api->group(['middleware' => 'api.auth'], function ($api) {
+            //当前登录用户权限
+            $api->get('user/permissions', 'PermissionsController@index')->name('api.user.permissions.index');
+
             //当前登录用户信息
             $api->get('user', 'UsersController@me')->name('api.user.show');
             //编辑登录用户信息
@@ -83,6 +90,15 @@ $api->version('v1', [
             $api->delete('topics/{topic}', 'TopicsController@destroy')->name('api.topics.destroy');
             //添加评论
             $api->post('topics/{topic}/comments', 'CommentsController@store')->name('api.topics.comments.store');
+            //删除评论
+            $api->delete('topics/{topic}/comments/{comment}', 'CommentsController@destroy')->name('api.topics.comments.destroy');
+            //评论通知列表
+            $api->get('user/notifications', 'NotificationsController@index')->name('api.user.notifications.index');
+            //通知统计
+            $api->get('user/notifications/stats', 'NotificationsController@stats')->name('api.user.notifications.stats');
+            //标记消息已读
+            $api->patch('user/read/notifications', 'NotificationsController@read')->name('api.user.notification.read');
+
         });
     });
 
