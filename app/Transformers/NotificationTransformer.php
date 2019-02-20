@@ -12,7 +12,7 @@ namespace App\Transformers;
 use Illuminate\Notifications\DatabaseNotification;
 use League\Fractal\TransformerAbstract;
 
-class NotificationsTransformer extends TransformerAbstract
+class NotificationTransformer extends TransformerAbstract
 {
 
     public function transform(DatabaseNotification $databaseNotification)

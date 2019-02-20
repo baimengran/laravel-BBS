@@ -187,6 +187,8 @@ return [
         App\Http\ViewComposers\ActiveUserServiceProvider::class,
         //easysms短信发送
         App\Providers\EasySmsServiceProvider::class,
+        //极光消息推送
+        App\Providers\JpushServiceProvider::class,
 
     ],
 

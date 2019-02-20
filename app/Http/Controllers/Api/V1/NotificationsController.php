@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Transformers\NotificationsTransformer;
+use App\Transformers\NotificationTransformer;
 use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
@@ -12,7 +12,7 @@ class NotificationsController extends Controller
     {
         $notifications = $this->user->notifications()->paginate(15);
 
-        return $this->response->paginator($notifications, new NotificationsTransformer());
+        return $this->response->paginator($notifications, new NotificationTransformer());
     }
 
     /**

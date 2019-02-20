@@ -21,7 +21,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api\V1',
-    'middleware' => ['serializer:array', 'bindings'],
+    'middleware' => ['serializer:array', 'bindings','change-locale'],
 ], function ($api) {
     $api->get('version', function () {
         return response('这里是 vi 版本');
@@ -70,6 +70,10 @@ $api->version('v1', [
         $api->get('users/{user}/comments', 'CommentsController@userIndex')->name('api.users.comments.index');
         //话题详情
         $api->get('topics/{topic}', 'TopicsController@show')->name('api.topics.show');
+        //资源推荐
+        $api->get('links', 'LinksController@index')->name('api.links.index');
+        //活跃用户
+        $api->get('actived/users', 'UsersController@activedIndex')->name('api.actived.users.index');
 
         //需要token验证的接口
         $api->group(['middleware' => 'api.auth'], function ($api) {
