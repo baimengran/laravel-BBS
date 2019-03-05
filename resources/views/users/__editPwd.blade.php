@@ -30,8 +30,7 @@
         <div class="col-md-6">
             <div class="input-group input-group-lg mb-md">
                 <span class="input-group-addon btn-danger">@</span>
-                <input type="text" name="email" value="{{$user->email}}" class="form-control input-lg" placeholder=""
-                       readonly="readonly">
+                <input type="text" name="email" value="{{$user->email}}" class="form-control input-lg" placeholder="">
             </div>
         </div>
         <button id="seedPasswordReset" type="button" class="btn btn-primary mr-xs mb-sm" style="margin: 5px 0 0 -15%">

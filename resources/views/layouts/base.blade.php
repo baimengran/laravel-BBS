@@ -55,7 +55,7 @@
                 </div>
             </div>
         </section>
-        @if(Auth::check()&&Auth::user()->verified==false)
+        @if(Auth::check()&&Auth::user()->verified==false&&Auth::user()->eamil)
             <div class="col-md-10 col-md-offset-1">
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

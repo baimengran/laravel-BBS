@@ -26,10 +26,14 @@ Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('login/code','Auth\PhoneLoginController@sendCode')->name('login.phone.send.code');
+Route::post('login/phone','Auth\PhoneLoginController@login')->name('login.phone');
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::post('register/code','Auth\PhoneRegisterController@sendCode')->name('register.phone.send.code');
+Route::post('register/store','Auth\PhoneRegisterController@store')->name('register.phone.store');
 Route::get('email_verification','Auth\RegisterController@showRegisterEmailVerification')->name('register.show.verification');
 Route::get('send_email_verification','Auth\RegisterController@sendRegisterEmailVerification')->name('register.send.verification');
 Route::get('email_verification/{verification}','Auth\RegisterController@registerEmailVerification')->name('register.verification');

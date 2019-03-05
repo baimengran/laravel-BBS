@@ -8,9 +8,11 @@ use App\Models\User;
 use App\Policies\CommentPolicy;
 use App\Policies\TopicPolicy;
 use App\Policies\UserPolicy;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Horizon\Horizon;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        //passport路由
+        Passport::routes();
+        //passport access_token过期时间
+        Passport::tokensExpireIn(Carbon::now()->addDays(15));
+        //passport refreshTokens过期时间
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
 
         //定义horizon访问权限
         Horizon::auth(function ($request) {

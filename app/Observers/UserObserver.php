@@ -16,8 +16,10 @@ class UserObserver
 
     public function created(User $user)
     {
-        $user->verification_token = str_random(30);
-        $user->save();
-        $user->sendRegisterNotification($user);
+        if($user->email){
+            $user->verification_token = str_random(30);
+            $user->save();
+            $user->sendRegisterNotification($user);
+        }
     }
 }

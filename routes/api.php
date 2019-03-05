@@ -114,3 +114,6 @@ $api->version('v2', function ($api) {
         return response('这里是 v2 版本');
     });
 });
+
+//passport clientID:1
+//passport clientSecret:YCehkuR4sMdArD2xxlHHHAPlkWT5o7yBTa4Q4OSO
