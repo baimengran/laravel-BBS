@@ -10,10 +10,7 @@ return [
     'title' => '站点设置',
 
     //访问权限
-    'permission' => function () {
-        //只能站长管理站点配置
-        return Auth::user()->hasRole('Founder');
-    },
+    'permission' => 'administrator_site_founder',
 
     //站点配置表单
     'edit_fields' => [
@@ -72,12 +69,7 @@ return [
     ],
 
     //数据即将保持的触发钩子，可以对用户提交的数据做修改
-    'before_save' => function (&$data) {
-        //为网站名称加后缀，加上判断是为防止多次添加
-        if (strpos($data['site_name'], 'Powered By LaraBlogTwo') === false) {
-            $data['site_name'] .= ' - Powered By LaraBlogTwo';
-        }
-    },
+    'before_save' => 'administrator_site_before_save',
 
     //定义多种动作，每一个动作作为页面底部的 其他操作 区块
     'actions' => [
@@ -94,10 +86,7 @@ return [
             ],
 
             // 动作执行代码，注意你可以通过修改 $data 参数更改配置信息
-            'action' => function (&$data) {
-                \Artisan::call('cache:clear');
-                return true;
-            }
+            'action' => 'administrator_site_action'
         ],
     ],
 ];

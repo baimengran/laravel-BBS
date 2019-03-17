@@ -82,9 +82,7 @@ return array(
      *
      * @type closure
      */
-    'permission' => function () {
-        return Auth::check() && Auth::user()->can('manage_contents');
-    },
+    'permission' => 'manage_contents',
 
     /*
      * This determines if you will have a dashboard (whose view you provide in the dashboard_view option) or a non-dashboard home

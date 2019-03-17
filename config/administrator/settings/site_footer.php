@@ -10,10 +10,7 @@ return[
     'title'=>'站点底部导航设置',
 
     //访问权限
-    'permission' => function () {
-        //只能站长管理站点配置
-        return Auth::user()->hasRole('Founder');
-    },
+    'permission' => 'administrator_site_footer_founder',
 
     //站点配置表单
     'edit_fields' => [
@@ -123,10 +120,7 @@ return[
             ],
 
             // 动作执行代码，注意你可以通过修改 $data 参数更改配置信息
-            'action' => function (&$data) {
-                \Artisan::call('cache:clear');
-                return true;
-            }
+            'action' => 'administrator_action_site_footer',
         ],
     ],
 ];

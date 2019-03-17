@@ -13,9 +13,7 @@ return [
     'single' => '角色',
     'model' => Role::class,
 
-    'permission' => function () {
-        return Auth::user()->can('manage_users');
-    },
+    'permission' => 'manage_users',
 
     'columns' => [
         'id' => [
@@ -26,21 +24,12 @@ return [
         ],
         'permissions' => [
             'title' => '权限',
-            'output' => function ($value, $model) {
-                $model->load('permissions');
-                $result = [];
-                foreach ($model->permissions as $permission) {
-                    $result[] = $permission->name;
-                }
-                return empty($result) ? 'N/A' : implode($result, ' | ');
-            },
+            'output' => 'administrator_roles_permissions',
             'sortable' => false,
         ],
         'operation' => [
             'title' => '管理',
-            'output' => function ($value, $model) {
-                return $value;
-            },
+            'output' => 'administrator_roles_operation',
             'sortable' => false,
         ],
     ],

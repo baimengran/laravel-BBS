@@ -16,10 +16,7 @@ return [
     //对CRUD 动作的单独权限控制 True or False 默认True
     'action_permissions' => [
         //删除
-        'delete' => function () {
-            //只有站长才能删除
-            return Auth::user()->hasRole('Founder');
-        }
+        'delete' => 'administrator_categories_founder'
     ],
 
     'columns' => [
@@ -36,15 +33,7 @@ return [
         ],
         'is_son' => [
             'title' => '是否允许子类',
-            'output' => function ($is_son, $model) {
-                if ($is_son == 1) {
-                    return '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
-                } else if ($is_son == 0) {
-                    return '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
-                } else {
-                    return 'N/A';
-                }
-            },
+            'output' => 'administrator_categories_is_son',
             'sortable' => false,
         ],
         'description' => [

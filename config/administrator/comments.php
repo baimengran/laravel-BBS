@@ -20,25 +20,17 @@ return [
         'content' => [
             'title'    => '内容',
             'sortable' => false,
-            'output'   => function ($value, $model) {
-                return '<div style="max-width:220px">' . $value . '</div>';
-            },
+            'output'   => 'administrator_comments_content',
         ],
         'user' => [
             'title'    => '作者',
             'sortable' => false,
-            'output'   => function ($value, $model) {
-                $img = $model->user->img;
-                $value = empty($img) ? 'N/A' : '<img src="'.$img.'" style="height:22px;width:22px"> ' . $model->user->name;
-                return model_link($value, $model->user);
-            },
+            'output'   => 'administrator_comments_user',
         ],
         'topic' => [
             'title'    => '话题',
             'sortable' => false,
-            'output'   => function ($value, $model) {
-                return '<div style="max-width:260px">' . model_admin_link(e($model->topic->title), $model->topic) . '</div>';
-            },
+            'output'   => 'administrator_comments_topic',
         ],
         'operation' => [
             'title'  => '管理',

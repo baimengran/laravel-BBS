@@ -20,9 +20,7 @@ return [
 
     //设置当前页面的访问权限，通过返回布尔值来控制权限
     //返回true 即通过权限验证，false 则无权访问并从Menu中隐藏
-    'permission' => function () {
-        return Auth::user()->can('manage_users');
-    },
+    'permission' => 'manage_users',
 
     //字段负责渲染【数据列表】 由user表中的列组成
     'columns' => [
@@ -34,9 +32,7 @@ return [
             'title' => '头像',
 
             //默认直接输出数据，也可以使用output选项定制输出内容
-            'output' => function ($img, $model) {
-                return empty($img) ? 'N/A' : '<img src="' . $img . '" width="40">';
-            },
+            'output' => 'administrator_users_avatar',
 
             //是否允许排序
             'sortable' => false,
@@ -45,9 +41,7 @@ return [
         'name' => [
             'title' => '用户名',
             'sortable' => false,
-            'output' => function ($name, $model) {
-                return '<a href="/users/' . $model->id . '" target=_blank>' . $name . '</a>';
-            },
+            'output' => 'administrator_users_name',
         ],
 
         'email' => [

@@ -13,25 +13,15 @@ return [
     'single' => '权限',
     'model' => Permission::class,
 
-    'permission' => function () {
-        return Auth::user()->can('manage_users');
-    },
+    'permission' => 'manage_users',
 
     //对CRUD 动作的单独权限控制，True or False
     'action_permissions' => [
         //控制 新建按钮 的显示
-        'create' => function ($model) {
-            return true;
-        },
-        'update' => function ($model) {
-            return true;
-        },
-        'delete' => function ($model) {
-            return false;
-        },
-        'view' => function ($model) {
-            return true;
-        },
+        'create' => 'action_permissions_create',
+        'update' => 'action_permissions_update',
+        'delete' => 'action_permissions_delete',
+        'view' => 'action_permissions_view',
     ],
 
     'columns' => [

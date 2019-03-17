@@ -21,25 +21,17 @@ return [
         'title' => [
             'title'    => '话题',
             'sortable' => false,
-            'output'   => function ($value, $model) {
-                return '<div style="max-width:260px">' . model_link($value, $model) . '</div>';
-            },
+            'output'   => 'administrator_topics_title',
         ],
         'user' => [
             'title'    => '作者',
             'sortable' => false,
-            'output'   => function ($value, $model) {
-                $img = $model->user->img;
-                $value = empty($img) ? 'N/A' : '<img src="'.$img.'" style="height:22px;width:22px"> ' . $model->user->name;
-                return model_link($value, $model->user);
-            },
+            'output'   => 'administrator_topics_user',
         ],
         'category' => [
             'title'    => '分类',
             'sortable' => false,
-            'output'   => function ($value, $model) {
-                return model_admin_link($model->category->name, $model->category);
-            },
+            'output'   => 'administrator_topics_category',
         ],
         'reply_count' => [
             'title'    => '评论',

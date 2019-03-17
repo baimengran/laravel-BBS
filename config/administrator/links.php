@@ -14,10 +14,7 @@ return [
     'model' => Link::class,
 
     //访问权限
-    'permission' => function () {
-        //只允许站长管理
-        return Auth::user()->hasRole('Founder');
-    },
+    'permission' => 'administrator_links_founder',
 
     'columns' => [
         'id' => [
