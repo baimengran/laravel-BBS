@@ -87,7 +87,7 @@ return [
     */
 
     'prefix' => env(
-        'CACHE_PREFIX',
+        'laravel_blogtwo',
         str_slug(env('APP_NAME', 'laravel'), '_').'_cache'
     ),
 
