@@ -77,11 +77,12 @@ class UsersController extends Controller
         if ($user) {
             return $this->response->errorForbidden('微信已绑定其他用户，请直接登录');
         }
-
+        $userimg =  new User();
         //创建用户
         $user = User::create([
             'name' => $request->input('name'),
             'phone' => $verifyData['phone'],
+            'img'=>$userimg->gravatar('450175191@qq.com'),
             'password' => bcrypt($request->input('password')),
             'weapp_openid' => $data['openid'],
             'weixin_session_key' => $data['session_key']

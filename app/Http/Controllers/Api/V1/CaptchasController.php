@@ -18,7 +18,7 @@ class CaptchasController extends Controller
         //创建验证图片
         $captcha = $captchaBuilder->build();
         //设定缓存过期时间
-        $expiredAt = now()->addMinutes(2);
+        $expiredAt = now()->addMinutes(10);
         //将手机号码与图片验证码文本存入缓存
         \Cache::put($key, ['phone' => $phone, 'code' => $captcha->getPhrase()], $expiredAt);
 
