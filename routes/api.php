@@ -62,6 +62,8 @@ $api->version('v1', [
         'expires' => config('api.rate_limits.access.expires'),
     ], function ($api) {
         //游客可以访问接口
+        //用户详情
+        $api->get('users/{user}','UsersController@show')->name('api.users.show');
         //分类列表
         $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
         //话题列表

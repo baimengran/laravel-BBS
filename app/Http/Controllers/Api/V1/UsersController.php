@@ -135,4 +135,13 @@ class UsersController extends Controller
     {
         return $this->response->collection($user->getActiveUsers(), new UserTransformer());
     }
+
+    /**
+     * 查看用户详细信息
+     * @param User $user
+     * @return \Dingo\Api\Http\Response
+     */
+    public function show(User $user){
+        return $this->response->item($user,new UserTransFormer());
+    }
 }
