@@ -14,23 +14,23 @@ use League\Fractal\TransformerAbstract;
 
 class TopicTransformer extends TransformerAbstract
 {
-    protected $fields=[];
-    protected $except_fields=[];
-    protected $availableIncludes = ['user', 'category'];
+    protected $fields = [];
+    protected $except_fields = [];
+    protected $availableIncludes = ['user', 'category', 'topComments'];
 
-    public function __construct($fields = null,$except_fields=null)
+    public function __construct($fields = null, $except_fields = null)
     {
-        $this->fields=explode(',',$fields);
-        $this->except_fields = explode(',',$except_fields);
+        $this->fields = explode(',', $fields);
+        $this->except_fields = explode(',', $except_fields);
     }
 
     public function transform(Topic $topic)
     {
         //可选字段
-        if(!count($this->fields)){
+        if (!count($this->fields)) {
             $data = [];
-            foreach($this->fields as $field){
-                $data[$field]=$topic->$field;
+            foreach ($this->fields as $field) {
+                $data[$field] = $topic->$field;
             }
             return $data;
         }
@@ -58,5 +58,10 @@ class TopicTransformer extends TransformerAbstract
     public function includeCategory(Topic $topic)
     {
         return $this->item($topic->category, new CategoryTransformer());
+    }
+
+    public function includeTopComments(Topic $topic)
+    {
+        return $this->collection($topic->topComments, new CommentTransformer());
     }
 }

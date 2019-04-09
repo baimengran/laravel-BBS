@@ -25,6 +25,11 @@ class Topic extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function topComments()
+    {
+        return $this->comment()->limit(5);
+    }
+
     /**
      * 修改路由，可包含slug参数路由，（SEO友好路由）
      * @param array $params 附加URL参数

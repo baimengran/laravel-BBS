@@ -52,7 +52,7 @@ $api->version('v1', [
         //小程序登录
         $api->post('weapp/authorizations', 'AuthorizationsController@weappStore')->name('api.weapp.authorizations.store');
         //小程序注册
-        $api->post('weapp/users','UsersController@weappStore')->name('api.weapp.users.store');
+        $api->post('weapp/users', 'UsersController@weappStore')->name('api.weapp.users.store');
     });
 
     //数据请求
@@ -63,7 +63,7 @@ $api->version('v1', [
     ], function ($api) {
         //游客可以访问接口
         //用户详情
-        $api->get('users/{user}','UsersController@show')->name('api.users.show');
+        $api->get('users/{user}', 'UsersController@show')->name('api.users.show');
         //分类列表
         $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
         //话题列表
@@ -91,7 +91,7 @@ $api->version('v1', [
             //编辑登录用户信息
             $api->patch('user', 'UsersController@update')->name('api.user.patch');
             //小程序编辑登录用户信息
-            $api->put('user','UsersController@update')->name('api.user.update');
+            $api->put('user', 'UsersController@update')->name('api.user.update');
             //图片资源
             $api->post('images', 'ImagesController@store')->name('api.images.store');
             //发布话题
@@ -110,7 +110,8 @@ $api->version('v1', [
             $api->get('user/notifications/stats', 'NotificationsController@stats')->name('api.user.notifications.stats');
             //标记消息已读
             $api->patch('user/read/notifications', 'NotificationsController@read')->name('api.user.notification.read');
-
+            //微信小程序标记消息已读
+            $api->put('user/read/notifications', 'NotificationsController@read')->name('api.user.notifications.read.put');
         });
     });
 
